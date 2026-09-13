@@ -1,2186 +1,2760 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <script>
-    if (!localStorage.getItem("userId")) {
-        document.documentElement.style.display = "none";
-        window.location.replace("login.html");
-    }
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | HabitForge</title>
 
-    <title>HabitForge | Habit & Goal Tracking</title>
-
-    <!-- Bootstrap -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
-
-    <!-- Bootstrap Icons -->
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
- /* =========================================================
-   HABITFORGE — PREMIUM UI
-========================================================= */
-
-:root {
-    --bg: #070707;
-    --bg-soft: #0b0b0b;
-    --card: #101010;
-    --card-hover: #141414;
-    --gold: #d4af37;
-    --gold-light: #f0c94c;
-    --gold-soft: rgba(212, 175, 55, 0.12);
-    --gold-border: rgba(212, 175, 55, 0.22);
-    --text: #f5f5f5;
-    --text-soft: #b7b7b7;
-    --muted: #777;
-    --border: rgba(255,255,255,0.07);
-    --danger: #ff6b6b;
-    --success: #66bb6a;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    background:
-        radial-gradient(
-            circle at 85% 5%,
-            rgba(212,175,55,0.08),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 5% 35%,
-            rgba(212,175,55,0.035),
-            transparent 25%
-        ),
-        var(--bg);
-    color: var(--text);
-    font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-    min-height: 100vh;
-}
-
-/* =========================================================
-   SCROLLBAR
-========================================================= */
-
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #080808;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #3b3218;
-    border-radius: 20px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--gold);
-}
-
-/* =========================================================
-   NAVBAR
-========================================================= */
-
-.navbar-custom {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: rgba(5,5,5,0.92);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid var(--gold-border);
-    padding: 17px 0;
-}
-
-.navbar-custom .container {
-    max-width: 1400px;
-}
-
-.brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--gold);
-    font-size: 26px;
-    font-weight: 800;
-    text-decoration: none;
-    letter-spacing: 0.5px;
-    transition: 0.25s ease;
-}
-
-.brand i {
-    font-size: 24px;
-}
-
-.brand:hover {
-    color: var(--gold-light);
-    transform: translateY(-1px);
-}
-
-.nav-title {
-    color: #aaa;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-}
-
-.nav-title i {
-    color: var(--gold);
-    margin-right: 5px;
-}
-
-#logoutBtn {
-    border-color: rgba(212,175,55,0.35);
-    color: var(--gold);
-    border-radius: 9px;
-    padding: 9px 16px;
-    font-weight: 600;
-    transition: 0.25s ease;
-}
-
-#logoutBtn:hover {
-    background: var(--gold);
-    color: #080808;
-    border-color: var(--gold);
-    box-shadow: 0 8px 25px rgba(212,175,55,0.15);
-}
-
-/* =========================================================
-   MAIN
-========================================================= */
-
-.main-container {
-    width: min(1400px, 100%);
-    margin: auto;
-    padding: 45px 30px 80px;
-}
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero-section {
-    position: relative;
-    overflow: hidden;
-    padding: 55px 48px;
-    border: 1px solid var(--gold-border);
-    border-radius: 24px;
-    background:
-        linear-gradient(
-            135deg,
-            rgba(212,175,55,0.07),
-            rgba(255,255,255,0.015) 45%,
-            transparent
-        ),
-        #0b0b0b;
-    box-shadow:
-        0 25px 70px rgba(0,0,0,0.35),
-        inset 0 1px rgba(255,255,255,0.025);
-}
-
-.hero-section::after {
-    content: "";
-    position: absolute;
-    width: 280px;
-    height: 280px;
-    right: -120px;
-    top: -120px;
-    border-radius: 50%;
-    background: rgba(212,175,55,0.08);
-    filter: blur(2px);
-    pointer-events: none;
-}
-
-.welcome-text {
-    color: var(--gold);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-}
-
-.dashboard-title {
-    margin: 0;
-    color: #fff;
-    font-size: clamp(42px, 5vw, 64px);
-    line-height: 1;
-    font-weight: 800;
-    letter-spacing: -2px;
-}
-
-.dashboard-title::after {
-    content: ".";
-    color: var(--gold);
-}
-
-.dashboard-subtitle {
-    max-width: 600px;
-    color: var(--text-soft);
-    font-size: 17px;
-    margin: 18px 0 0;
-    line-height: 1.7;
-}
-
-.btn-gold {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: var(--gold);
-    color: #080808;
-    border: 1px solid var(--gold);
-    padding: 12px 22px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 800;
-    transition: all 0.25s ease;
-    box-shadow: 0 8px 25px rgba(212,175,55,0.12);
-}
-
-.btn-gold:hover {
-    background: var(--gold-light);
-    color: #080808;
-    border-color: var(--gold-light);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(212,175,55,0.2);
-}
-
-.forge-icon {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background:
-        radial-gradient(
-            circle,
-            rgba(212,175,55,0.18),
-            rgba(212,175,55,0.025) 65%,
-            transparent 70%
-        );
-    border: 1px solid rgba(212,175,55,0.2);
-    color: var(--gold);
-    font-size: 72px;
-    text-shadow: 0 0 35px rgba(212,175,55,0.4);
-    margin: auto;
-}
-
-.forge-text {
-    color: #8d8d8d;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    margin-top: 16px;
-}
-
-/* =========================================================
-   SECTIONS
-========================================================= */
-
-.section,
-.dashboard-section {
-    padding: 42px 0;
-    border-bottom: 1px solid var(--border);
-}
-
-.section:last-child {
-    border-bottom: none;
-}
-
-.section-title {
-    color: #fff;
-    font-size: 21px;
-    font-weight: 750;
-    margin-bottom: 25px;
-    letter-spacing: -0.3px;
-}
-
-.section-title i {
-    color: var(--gold);
-    margin-right: 8px;
-}
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 20px;
-    margin-bottom: 24px;
-}
-
-.section-header .section-title {
-    margin-bottom: 6px;
-}
-
-.section-subtitle {
-    margin: 0;
-    color: #777;
-    font-size: 14px;
-}
-
-/* =========================================================
-   STAT CARDS
-========================================================= */
-
-.stat-card {
-    position: relative;
-    overflow: hidden;
-    height: 100%;
-    min-height: 185px;
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,0.025),
-            transparent 60%
-        ),
-        var(--card);
-    border: 1px solid var(--border);
-    border-radius: 17px;
-    padding: 24px;
-    transition: all 0.3s ease;
-}
-
-.stat-card::after {
-    content: "";
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    right: -50px;
-    bottom: -50px;
-    border-radius: 50%;
-    background: rgba(212,175,55,0.05);
-}
-
-.stat-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--gold-border);
-    background: var(--card-hover);
-    box-shadow: 0 18px 45px rgba(0,0,0,0.28);
-}
-
-.stat-icon {
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--gold-soft);
-    border: 1px solid var(--gold-border);
-    border-radius: 13px;
-    color: var(--gold);
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-
-.stat-name {
-    color: #999;
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-}
-
-.stat-number {
-    color: #fff;
-    font-size: 35px;
-    line-height: 1.2;
-    font-weight: 800;
-    margin: 5px 0;
-}
-
-.stat-description {
-    color: #666;
-    font-size: 13px;
-}
-
-/* =========================================================
-   HABITS
-========================================================= */
-
-.habits-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-}
-
-.habit-card {
-    width: 100%;
-    background:
-        linear-gradient(
-            100deg,
-            rgba(212,175,55,0.025),
-            transparent 45%
-        ),
-        var(--card);
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    padding: 18px 20px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-    transition: all 0.25s ease;
-}
-
-.habit-card:hover {
-    border-color: var(--gold-border);
-    transform: translateX(3px);
-    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
-}
-
-.habit-card-icon {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 13px;
-    background: var(--gold-soft);
-    border: 1px solid var(--gold-border);
-    color: var(--gold);
-    font-size: 20px;
-}
-
-.habit-card-content {
-    flex: 1;
-    min-width: 0;
-}
-
-.habit-card-content h3 {
-    color: #fff;
-    font-size: 17px;
-    font-weight: 700;
-    margin: 0 0 5px;
-    word-break: break-word;
-}
-
-.habit-card-content p {
-    color: #777;
-    font-size: 13px;
-    margin: 0;
-}
-
-.habit-card-content span {
-    color: var(--gold);
-    font-weight: 600;
-}
-
-.habit-actions {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    flex-shrink: 0;
-}
-
-.habit-complete-btn,
-.habit-edit-btn,
-.habit-delete-btn {
-    transition: all 0.25s ease;
-    cursor: pointer;
-}
-
-.habit-complete-btn {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    border-radius: 10px;
-    background: transparent;
-    border: 1px solid var(--gold-border);
-    color: var(--gold);
-    font-size: 17px;
-}
-
-.habit-complete-btn:hover {
-    background: var(--gold);
-    color: #080808;
-    transform: translateY(-2px);
-}
-
-.habit-complete-btn.completed {
-    background: var(--gold);
-    color: #080808;
-    border-color: var(--gold);
-    box-shadow: 0 5px 20px rgba(212,175,55,0.18);
-}
-
-.habit-complete-btn.completed:hover {
-    background: transparent;
-    color: var(--gold);
-}
-
-.habit-edit-btn,
-.habit-delete-btn {
-    height: 40px;
-    padding: 0 13px;
-    border-radius: 9px;
-    background: transparent;
-    font-size: 12px;
-    font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.habit-edit-btn {
-    border: 1px solid rgba(102,187,106,0.35);
-    color: var(--success);
-}
-
-.habit-edit-btn:hover {
-    background: var(--success);
-    color: #080808;
-}
-
-.habit-delete-btn {
-    border: 1px solid rgba(255,107,107,0.3);
-    color: var(--danger);
-}
-
-.habit-delete-btn:hover {
-    background: var(--danger);
-    color: #080808;
-}
-
-/* =========================================================
-   GOALS
-========================================================= */
-
-.goals-section {
-    margin-top: 0;
-}
-
-.goals-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.goal-card {
-    background:
-        linear-gradient(
-            100deg,
-            rgba(212,175,55,0.025),
-            transparent 50%
-        ),
-        var(--card);
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    transition: all 0.25s ease;
-}
-
-.goal-card:hover {
-    border-color: var(--gold-border);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(0,0,0,0.22);
-}
-
-.goal-card-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 13px;
-    background: var(--gold-soft);
-    border: 1px solid var(--gold-border);
-    color: var(--gold);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-}
-
-.goal-card-content {
-    flex: 1;
-    min-width: 0;
-}
-
-.goal-card-content h3 {
-    margin: 0 0 6px;
-    color: #fff;
-    font-size: 17px;
-    font-weight: 700;
-}
-
-.goal-card-content p {
-    margin: 0;
-    color: #777;
-    font-size: 13px;
-}
-
-.goal-progress-area {
-    width: 250px;
-    flex-shrink: 0;
-}
-
-.goal-progress-text {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 8px;
-    font-size: 12px;
-    color: #777;
-}
-
-.goal-progress-text strong {
-    color: var(--gold);
-}
-
-.goal-progress-bar {
-    width: 100%;
-    height: 8px;
-    background: #222;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.goal-progress-fill {
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        #9e7d1f,
-        var(--gold),
-        var(--gold-light)
-    );
-    border-radius: 20px;
-    transition: width 0.5s ease;
-}
-
-.goal-actions {
-    display: flex;
-    gap: 7px;
-    flex-shrink: 0;
-}
-
-.goal-progress-btn,
-.goal-edit-btn,
-.goal-delete-btn {
-    height: 38px;
-    padding: 0 12px;
-    border-radius: 9px;
-    background: transparent;
-    font-size: 12px;
-    font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-.goal-progress-btn {
-    border: 1px solid var(--gold-border);
-    color: var(--gold);
-}
-
-.goal-progress-btn:hover {
-    background: var(--gold);
-    color: #080808;
-}
-
-.goal-edit-btn {
-    border: 1px solid rgba(102,187,106,0.35);
-    color: var(--success);
-}
-
-.goal-edit-btn:hover {
-    background: var(--success);
-    color: #080808;
-}
-
-.goal-delete-btn {
-    border: 1px solid rgba(255,107,107,0.3);
-    color: var(--danger);
-}
-
-.goal-delete-btn:hover {
-    background: var(--danger);
-    color: #080808;
-}
-
-/* =========================================================
-   EMPTY STATES
-========================================================= */
-
-.goal-empty-state,
-.habits-container > div:not(.habit-card) {
-    text-align: center;
-    padding: 50px 25px;
-    border: 1px dashed rgba(212,175,55,0.16);
-    border-radius: 15px;
-    background: rgba(255,255,255,0.012);
-}
-
-.empty-icon {
-    color: var(--gold);
-    font-size: 34px;
-    margin-bottom: 12px;
-}
-
-.empty-title {
-    color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-.empty-text {
-    color: #666;
-    margin: 0;
-    font-size: 13px;
-}
-
-/* =========================================================
-   ACTIVITY / TRACKING
-========================================================= */
-
-.activity-container {
-    margin-top: 20px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 17px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.18);
-}
-
-.activity-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 17px 20px;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.2s ease;
-}
-
-.activity-item:last-child {
-    border-bottom: none;
-}
-
-.activity-item:hover {
-    background: rgba(212,175,55,0.035);
-}
-
-.activity-icon {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
-    border-radius: 11px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--gold-soft);
-    color: var(--gold);
-    border: 1px solid var(--gold-border);
-    font-size: 17px;
-}
-
-.activity-content {
-    flex: 1;
-}
-
-.activity-message {
-    color: #eee;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.activity-time {
-    margin-top: 4px;
-    color: #666;
-    font-size: 11px;
-}
-
-.activity-empty {
-    padding: 50px 20px;
-    text-align: center;
-    color: #777;
-}
-
-.activity-empty i {
-    display: block;
-    font-size: 34px;
-    color: var(--gold);
-    margin-bottom: 12px;
-}
-
-.activity-empty p {
-    margin: 0;
-    color: #ddd;
-    font-weight: 700;
-}
-
-.activity-empty span {
-    display: block;
-    margin-top: 5px;
-    font-size: 12px;
-    color: #666;
-}
-
-/* =========================================================
-   MODALS
-========================================================= */
-
-.habit-modal {
-    background:
-        linear-gradient(
-            145deg,
-            rgba(212,175,55,0.035),
-            transparent 40%
-        ),
-        #101010;
-    border: 1px solid var(--gold-border);
-    border-radius: 18px;
-    color: #fff;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-}
-
-.habit-modal .modal-header {
-    padding: 20px 24px;
-    border-bottom: 1px solid var(--border);
-}
-
-.habit-modal .modal-title {
-    color: var(--gold);
-    font-weight: 750;
-}
-
-.habit-modal .modal-body {
-    padding: 24px;
-}
-
-.habit-modal .modal-footer {
-    border-top: 1px solid var(--border);
-    padding: 16px 24px;
-}
-
-.habit-modal .form-label {
-    color: #ccc;
-    font-size: 13px;
-    font-weight: 650;
-    margin-bottom: 7px;
-}
-
-.habit-input {
-    background: #080808 !important;
-    border: 1px solid var(--border) !important;
-    color: #fff !important;
-    border-radius: 9px;
-    padding: 11px 13px;
-}
-
-.habit-input:focus {
-    background: #080808 !important;
-    color: #fff !important;
-    border-color: var(--gold) !important;
-    box-shadow: 0 0 0 3px rgba(212,175,55,0.08) !important;
-}
-
-.habit-input::placeholder {
-    color: #555;
-}
-
-.habit-input option {
-    background: #101010;
-    color: #fff;
-}
-
-.btn-save-habit {
-    width: 100%;
-    background: var(--gold);
-    color: #080808;
-    border: none;
-    padding: 12px;
-    border-radius: 9px;
-    font-weight: 800;
-    font-size: 14px;
-    transition: 0.25s ease;
-}
-
-.btn-save-habit:hover {
-    background: var(--gold-light);
-    transform: translateY(-1px);
-    box-shadow: 0 8px 25px rgba(212,175,55,0.15);
-}
-
-.modal .btn-warning {
-    background: var(--gold);
-    border-color: var(--gold);
-    color: #080808;
-    font-weight: 750;
-}
-
-.modal .btn-warning:hover {
-    background: var(--gold-light);
-    border-color: var(--gold-light);
-    color: #080808;
-}
-
-/* =========================================================
-   BOOTSTRAP OVERRIDES
-========================================================= */
-
-.btn-secondary {
-    background: #222;
-    border-color: #333;
-    color: #aaa;
-}
-
-.btn-secondary:hover {
-    background: #2c2c2c;
-    border-color: #444;
-    color: #fff;
-}
-
-.modal-backdrop.show {
-    opacity: 0.78;
-}
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media (max-width: 992px) {
-
-    .hero-section {
-        padding: 40px 30px;
-    }
-
-    .forge-icon {
-        width: 120px;
-        height: 120px;
-        font-size: 58px;
-    }
-
-    .goal-card {
-        flex-wrap: wrap;
-    }
-
-    .goal-progress-area {
-        width: 100%;
-        order: 3;
-    }
-
-    .goal-actions {
-        margin-left: auto;
-    }
-}
-
-@media (max-width: 768px) {
-
-    .main-container {
-        padding: 25px 16px 60px;
-    }
-
-    .navbar-custom {
-        padding: 13px 0;
-    }
-
-    .brand {
-        font-size: 22px;
-    }
-
-    .nav-title {
-        display: none;
-    }
-
-    .hero-section {
-        padding: 35px 22px;
-        border-radius: 18px;
-    }
-
-    .dashboard-title {
-        font-size: 42px;
-    }
-
-    .dashboard-subtitle {
-        font-size: 15px;
-    }
-
-    .forge-icon {
-        width: 105px;
-        height: 105px;
-        font-size: 50px;
-        margin-top: 30px;
-    }
-
-    .section,
-    .dashboard-section {
-        padding: 32px 0;
-    }
-
-    .section-header {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .section-header .btn {
-        width: 100%;
-    }
-
-    .habit-card {
-        align-items: flex-start;
-        flex-wrap: wrap;
-    }
-
-    .habit-card-content {
-        padding-top: 2px;
-    }
-
-    .habit-actions {
-        width: 100%;
-        margin-top: 5px;
-    }
-
-    .habit-edit-btn,
-    .habit-delete-btn {
-        flex: 1;
-        justify-content: center;
-    }
-
-    .habit-complete-btn {
-        width: 40px;
-        min-width: 40px;
-    }
-
-    .goal-card {
-        align-items: flex-start;
-    }
-
-    .goal-actions {
-        width: 100%;
-        margin-left: 0;
-    }
-
-    .goal-progress-btn,
-    .goal-edit-btn,
-    .goal-delete-btn {
-        flex: 1;
-        justify-content: center;
-    }
-
-    .activity-item {
-        padding: 15px;
-    }
-
-    #logoutBtn {
-        padding: 8px 12px;
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 480px) {
-
-    .dashboard-title {
-        font-size: 36px;
-    }
-
-    .stat-card {
-        min-height: 160px;
-        padding: 20px;
-    }
-
-    .stat-number {
-        font-size: 30px;
-    }
-
-    .habit-card {
-        padding: 16px;
-    }
-
-    .goal-card {
-        padding: 16px;
-    }
-
-    .goal-actions {
-        flex-wrap: wrap;
-    }
-
-    .goal-progress-btn,
-    .goal-edit-btn,
-    .goal-delete-btn {
-        flex: 1 1 30%;
-    }
-}
-</style>
+        :root{
+            --bg:#080909;
+            --panel:#101212;
+            --panel2:#141717;
+            --border:#292d2d;
+            --gold:#d4af37;
+            --text:#f4f4f4;
+            --muted:#777d7d;
+            --green:#42b96b;
+            --red:#e34b55;
+            --blue:#38a8e8;
+            --orange:#e97832;
+        }
+
+        *{box-sizing:border-box}
+
+        body{
+            margin:0;
+            background:var(--bg);
+            color:var(--text);
+            font-family:Arial,Helvetica,sans-serif;
+            font-size:13px;
+        }
+
+        a{text-decoration:none}
+
+        /* SIDEBAR */
+        .sidebar{
+            position:fixed;
+            left:0;
+            top:0;
+            width:155px;
+            height:100vh;
+            background:#0b0d0d;
+            border-right:1px solid #252929;
+            padding:16px 10px;
+            z-index:1000;
+        }
+
+        .brand{
+            color:var(--gold);
+            font-size:17px;
+            font-weight:900;
+            margin:0 0 27px 12px;
+            white-space:nowrap;
+        }
+
+        .brand i{
+            font-size:18px;
+            margin-right:5px;
+        }
+
+        .nav-link{
+            color:#a4a8a8;
+            display:flex;
+            align-items:center;
+            gap:10px;
+            padding:9px 11px;
+            margin:0 0 4px;
+            border-radius:7px;
+            font-size:11px;
+            transition:.2s;
+        }
+
+        .nav-link i{
+            width:16px;
+            text-align:center;
+            font-size:12px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active{
+            color:var(--gold);
+            background:#2a220d;
+        }
+
+        .sidebar-quote{
+            position:absolute;
+            left:16px;
+            right:16px;
+            bottom:23px;
+            padding-top:10px;
+            border-top:1px solid #6b5920;
+            color:#777;
+            font-size:9px;
+            line-height:1.45;
+            font-style:italic;
+        }
+
+        /* MAIN */
+        .main{
+            margin-left:155px;
+            padding:14px 15px 20px;
+            min-height:100vh;
+        }
+
+        .topbar{
+            height:50px;
+            display:flex;
+            align-items:flex-start;
+            justify-content:space-between;
+            margin-bottom:8px;
+        }
+
+        .welcome{
+            font-size:23px;
+            font-weight:900;
+            line-height:1.05;
+        }
+
+        .welcome .gold{color:var(--gold)}
+
+        .tagline{
+            color:#777;
+            font-size:10px;
+            margin-top:3px;
+        }
+
+        .user-box{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            text-align:right;
+        }
+
+        .user-email{
+            font-size:9px;
+            font-weight:700;
+        }
+
+        .user-role{
+            color:#777;
+            font-size:8px;
+            margin-top:2px;
+        }
+
+        .avatar{
+            width:30px;
+            height:30px;
+            border-radius:50%;
+            background:var(--gold);
+            color:#111;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:13px;
+            font-weight:900;
+        }
+
+        /* STAT CARDS */
+        .stats-row{
+            margin-bottom:9px;
+        }
+
+        .stat-card{
+            height:96px;
+            position:relative;
+            overflow:hidden;
+            background:linear-gradient(145deg,#111313,#0d0f10);
+            border:1px solid var(--border);
+            border-radius:9px;
+            padding:12px 13px;
+        }
+
+        .stat-card:after{display:none;}
+
+        .stat-card-habits{color:#d4af37}
+        .stat-card-completed{color:#42d98a}
+        .stat-card-streak{color:#f07b32}
+        .stat-card-progress{color:#38a8e8}
+
+        .stat-trend{
+            position:absolute;
+            left:13px;
+            bottom:8px;
+            max-width:60%;
+            color:#707777;
+            font-size:7px;
+            line-height:1.2;
+            z-index:2;
+        }
+
+        .stat-chart-wrap{
+            position:absolute;
+            right:8px;
+            bottom:7px;
+            width:48%;
+            height:52px;
+            z-index:1;
+            opacity:1;
+        }
+
+        .stat-chart{
+            width:100%;
+            height:100%;
+            display:block;
+            overflow:visible;
+        }
+
+        .stat-chart .chart-grid{
+            stroke:#2a2f2f;
+            stroke-width:1;
+            stroke-dasharray:2 4;
+            opacity:.65;
+        }
+
+        .stat-chart .chart-area{
+            fill:url(#habitsGradient);
+            opacity:.75;
+            transition:d .5s ease;
+        }
+
+        .stat-card-completed .chart-area{
+            fill:url(#completedGradient);
+        }
+
+        .stat-card-streak .chart-area{
+            fill:url(#streakGradient);
+        }
+
+        .stat-card-progress .chart-area{
+            fill:url(#progressGradient);
+        }
+
+        .stat-chart .chart-line{
+            fill:none;
+            stroke:currentColor;
+            stroke-width:2.4;
+            stroke-linecap:round;
+            stroke-linejoin:round;
+            filter:drop-shadow(0 0 3px currentColor);
+            transition:all .5s ease;
+        }
+
+        .stat-chart .chart-dot{
+            r:3.3;
+            fill:currentColor;
+            stroke:#0e1010;
+            stroke-width:2;
+            filter:drop-shadow(0 0 4px currentColor);
+            transition:cx .5s ease, cy .5s ease;
+        }
+
+        .goal-modal-header .modal-title{
+            display:flex;
+            align-items:center;
+            gap:8px;
+        }
+
+        .goal-modal-header .modal-title i{color:var(--gold);}
+        .goal-modal-subtitle{
+            color:#747a7a;
+            font-size:9px;
+            margin-top:3px;
+        }
+
+        .goal-guide{
+            display:flex;
+            gap:10px;
+            align-items:flex-start;
+            padding:11px;
+            margin-bottom:10px;
+            border:1px solid #31516b;
+            background:linear-gradient(145deg,#101c25,#11191e);
+            border-radius:8px;
+        }
+
+        .goal-guide-icon{
+            width:28px;
+            height:28px;
+            flex:0 0 28px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:7px;
+            color:#f5c93d;
+            background:#211d0a;
+        }
+
+        .goal-guide strong{
+            display:block;
+            color:#e9eeee;
+            font-size:10px;
+            margin-bottom:3px;
+        }
+
+        .goal-guide span{
+            display:block;
+            color:#7f9aae;
+            font-size:8px;
+            line-height:1.45;
+        }
+
+        .goal-example-row{
+            display:flex;
+            gap:6px;
+            flex-wrap:wrap;
+            margin-bottom:12px;
+        }
+
+        .goal-example{
+            border:1px solid #343939;
+            background:#171a1a;
+            color:#9ea4a4;
+            border-radius:6px;
+            padding:6px 8px;
+            font-size:8px;
+            cursor:pointer;
+        }
+
+        .goal-example:hover{
+            border-color:var(--gold);
+            color:#f4cf4c;
+            background:#1d1d14;
+        }
+
+        .field-hint,.goal-target-help{
+            color:#666d6d;
+            font-size:8px;
+            margin-top:4px;
+        }
+
+        .goal-target-help{
+            display:flex;
+            gap:4px;
+            align-items:center;
+            margin:0 0 5px;
+        }
+
+        .goal-target-help i{color:var(--gold);}
+        .form-label span{color:#666d6d;font-weight:500;}
+
+        .stat-card:nth-child(1){color:#d4af37}
+        .stat-card:nth-child(2){color:#42b96b}
+        .stat-card:nth-child(3){color:#e97832}
+        .stat-card:nth-child(4){color:#38a8e8}
+
+        .stat-icon{
+            width:29px;
+            height:29px;
+            border-radius:7px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:#201b09;
+            font-size:13px;
+            margin-bottom:5px;
+        }
+
+        .stat-number{
+            color:#f5f5f5;
+            font-size:20px;
+            font-weight:900;
+            line-height:1;
+        }
+
+        .stat-label{
+            color:#858989;
+            font-size:9px;
+            margin-top:4px;
+        }
+
+        /* CARDS */
+        .dashboard-card{
+            background:linear-gradient(145deg,#101313,#0d0f10);
+            border:1px solid var(--border);
+            border-radius:9px;
+        }
+
+        /* MIDDLE */
+        .middle-row{
+            margin-bottom:9px;
+        }
+
+        .habits-card{
+            min-height:284px;
+            padding:14px;
+        }
+
+        .quick-card{
+            min-height:284px;
+            padding:14px;
+        }
+
+        .section-head{
+            display:flex;
+            justify-content:space-between;
+            align-items:flex-start;
+            margin-bottom:11px;
+        }
+
+        .section-title{
+            font-size:13px;
+            font-weight:800;
+        }
+
+        .section-title i{
+            color:var(--gold);
+            margin-right:7px;
+        }
+
+        .section-subtitle{
+            color:#777;
+            font-size:8px;
+            margin-top:3px;
+        }
+
+        .action-buttons{
+            display:flex;
+            gap:6px;
+        }
+
+        .gold-btn{
+            border:0;
+            background:var(--gold);
+            color:#101010;
+            border-radius:6px;
+            padding:8px 12px;
+            font-size:10px;
+            font-weight:900;
+            white-space:nowrap;
+        }
+
+        .gold-btn:hover{
+            background:#e4c354;
+            color:#101010;
+        }
+
+        /* FILTERS */
+        .filters{
+            display:flex;
+            gap:5px;
+            margin-bottom:9px;
+        }
+
+        .filter{
+            border:1px solid #313535;
+            background:#161919;
+            color:#a5a9a9;
+            border-radius:14px;
+            padding:5px 10px;
+            font-size:8px;
+            cursor:pointer;
+        }
+
+        .filter.active{
+            background:#f0c93e;
+            border-color:#f0c93e;
+            color:#171717;
+            font-weight:800;
+        }
+
+        .filter.completed{color:#62d587}
+        .filter.overdue{color:#e45159}
+
+        /* HABIT */
+        #habitList{
+            min-height:181px;
+        }
+
+        .habit-row{
+            display:grid;
+            grid-template-columns:36px 1fr auto;
+            align-items:center;
+            gap:8px;
+            background:#171a1a;
+            border:1px solid #282d2d;
+            border-radius:6px;
+            padding:7px 9px;
+            min-height:50px;
+        }
+
+        .habit-check{
+            width:22px;
+            height:22px;
+            border:1px solid #5b6060;
+            border-radius:50%;
+            background:transparent;
+            color:transparent;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            cursor:pointer;
+        }
+
+        .habit-check.completed{
+            color:var(--gold);
+            border-color:var(--gold);
+        }
+
+        .habit-icon-bi-person-walking,
+        .habit-icon-bi-person-running,
+        .habit-icon-bi-bicycle{
+            color:#65d27d;
+            background:#17261c;
+        }
+
+        .habit-icon-bi-book-fill,
+        .habit-icon-bi-mortarboard-fill,
+        .habit-icon-bi-code-slash{
+            color:#69b7ff;
+            background:#162331;
+        }
+
+        .habit-icon-bi-moon-stars-fill,
+        .habit-icon-bi-brightness-high-fill,
+        .habit-icon-bi-stars{
+            color:#c8a8ff;
+            background:#211b2d;
+        }
+
+        .habit-icon-bi-heart-pulse-fill,
+        .habit-icon-bi-capsule{
+            color:#ff7180;
+            background:#2a171a;
+        }
+
+        .habit-icon-bi-briefcase-fill,
+        .habit-icon-bi-wallet2{
+            color:#d4af37;
+            background:#28220e;
+        }
+
+        .habit-icon-bi-egg-fried,
+        .habit-icon-bi-apple,
+        .habit-icon-bi-cup-hot-fill{
+            color:#f1a04a;
+            background:#2a1d12;
+        }
+
+        .habit-icon-bi-droplet-fill,
+        .habit-icon-bi-water{
+            color:#58d9f4;
+            background:#162b31;
+        }
+
+        .habit-icon{
+            width:30px;
+            height:30px;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:50%;
+            background:#29383c;
+            color:#62d9f2;
+            margin-right:7px;
+            font-size:14px;
+        }
+
+        .habit-name{
+            font-size:10px;
+            font-weight:800;
+        }
+
+        .habit-meta{
+            color:#777;
+            font-size:7px;
+            margin-top:3px;
+        }
+
+        .habit-actions{
+            display:flex;
+            gap:5px;
+        }
+
+        .habit-action{
+            width:28px;
+            height:28px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:transparent;
+            border-radius:5px;
+            padding:0;
+        }
+
+        .habit-action.complete{
+            border:1px solid var(--gold);
+            color:var(--gold);
+        }
+
+        .habit-action.edit{
+            border:1px solid var(--green);
+            color:var(--green);
+        }
+
+        .habit-action.delete{
+            border:1px solid var(--red);
+            color:var(--red);
+        }
+
+        .habit-action:hover{
+            filter:brightness(1.3);
+        }
+
+        .habit-empty{
+            height:164px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            color:#707575;
+            text-align:center;
+        }
+
+        .habit-empty i{
+            font-size:35px;
+            color:#555b5b;
+            margin-bottom:7px;
+        }
+
+        .habit-empty strong{
+            font-size:10px;
+            color:#c7c9c9;
+        }
+
+        .habit-empty span{
+            font-size:8px;
+            margin-top:4px;
+        }
+
+        /* QUICK ACTIONS */
+        .quick-list{
+            display:flex;
+            flex-direction:column;
+            gap:6px;
+        }
+
+        .quick-action{
+            min-height:38px;
+            display:grid;
+            grid-template-columns:28px 1fr 12px;
+            align-items:center;
+            gap:8px;
+            padding:5px 7px;
+            background:#171a1a;
+            border:1px solid #282d2d;
+            border-radius:6px;
+            color:#ddd;
+        }
+
+        .quick-action:hover{
+            color:#fff;
+            border-color:#5b4d1c;
+            background:#1b1e1e;
+        }
+
+        .quick-icon{
+            width:25px;
+            height:25px;
+            border-radius:5px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:#201b09;
+            color:var(--gold);
+            font-size:11px;
+        }
+
+        .quick-action strong{
+            display:block;
+            font-size:8px;
+        }
+
+        .quick-action small{
+            display:block;
+            color:#707575;
+            font-size:6.5px;
+            margin-top:2px;
+        }
+
+        .quick-arrow{
+            color:var(--gold);
+            font-size:8px;
+        }
+
+        /* BOTTOM */
+        .bottom-card{
+            min-height:94px;
+            padding:13px 14px;
+        }
+
+        .bottom-title{
+            font-size:11px;
+            font-weight:800;
+        }
+
+        .bottom-title i{
+            color:var(--gold);
+            margin-right:7px;
+        }
+
+        .bottom-subtitle{
+            color:#707575;
+            font-size:7px;
+            margin-top:2px;
+            margin-bottom:12px;
+        }
+
+        .completion-row{
+            display:flex;
+            justify-content:space-between;
+            color:#a5a9a9;
+            font-size:8px;
+            margin-bottom:6px;
+        }
+
+        .completion-row span:last-child{
+            color:var(--gold);
+            font-weight:800;
+        }
+
+        .progress{
+            height:8px;
+            background:#292d2d;
+            border-radius:5px;
+        }
+
+        .progress-bar{
+            background:var(--gold);
+        }
+
+        .activity-empty{
+            display:flex;
+            align-items:center;
+            gap:9px;
+            margin-top:14px;
+        }
+
+        .activity-icon{
+            width:27px;
+            height:27px;
+            border:1px solid #343939;
+            border-radius:5px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#777;
+        }
+
+        .activity-title{
+            font-size:8px;
+            color:#bbb;
+        }
+
+        .activity-subtitle{
+            font-size:6.5px;
+            color:#606565;
+            margin-top:3px;
+        }
+
+        /* MODAL */
+        .modal-content{
+            background:#101313;
+            color:#fff;
+            border:1px solid #343939;
+            border-radius:10px;
+        }
+
+        .modal-header,.modal-footer{
+            border-color:#292d2d;
+        }
+
+        .form-label{
+            color:#aaa;
+            font-size:11px;
+            font-weight:700;
+        }
+
+        .form-control,.form-select{
+            background:#171a1a;
+            border:1px solid #343939;
+            color:#fff;
+            font-size:11px;
+        }
+
+        .form-control:focus,.form-select:focus{
+            background:#171a1a;
+            color:#fff;
+            border-color:var(--gold);
+            box-shadow:0 0 0 .15rem rgba(212,175,55,.12);
+        }
+
+        .form-select option{
+            background:#171a1a;
+        }
+
+        .btn-close{
+            filter:invert(1);
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:900px){
+            .sidebar{width:130px}
+            .main{margin-left:130px}
+            .welcome{font-size:20px}
+        }
+
+        @media(max-width:700px){
+            .sidebar{
+                position:relative;
+                width:100%;
+                height:auto;
+                min-height:auto;
+            }
+
+            .sidebar-quote{display:none}
+            .main{margin-left:0;padding:12px}
+            .topbar{height:auto}
+            .user-box{display:none}
+            .action-buttons{width:100%}
+            .action-buttons .gold-btn{flex:1}
+            .habit-row{grid-template-columns:32px 1fr}
+            .habit-actions{grid-column:2}
+        }
+    </style>
 </head>
-
 
 <body>
 
-    <!-- =========================
-         NAVIGATION
-    ========================= -->
+<!-- SIDEBAR -->
+<aside class="sidebar">
 
-    <nav class="navbar-custom">
+    <div class="brand">
+        <i class="bi bi-lightning-fill"></i> HabitForge
+    </div>
 
-        <div class="container">
+    <a href="index.html" class="nav-link active">
+        <i class="bi bi-ui-checks-grid"></i>
+        Dashboard
+    </a>
 
-            <div class="d-flex justify-content-between align-items-center">
+    <a href="habits.html" class="nav-link">
+        <i class="bi bi-check2-square"></i>
+        My Habits
+    </a>
 
-                <a href="#" class="brand">
-                    <i class="bi bi-shield-shaded"></i>
-                    HabitForge
-                </a>
+    <a href="goals.html" class="nav-link">
+        <i class="bi bi-bullseye"></i>
+        Goals
+    </a>
 
-                <div class="d-flex align-items-center gap-3">
+    <a href="tracking.html" class="nav-link">
+        <i class="bi bi-bar-chart-fill"></i>
+        Tracking
+    </a>
 
-    <span class="nav-title">
-        <i class="bi bi-trophy"></i>
-        Habit & Goal Tracking
-    </span>
+    <a href="calendar.html" class="nav-link">
+        <i class="bi bi-calendar3"></i>
+        Calendar
+    </a>
 
-    <button
-        type="button"
-        class="btn btn-outline-warning"
-        id="logoutBtn">
+    <a href="profile.html" class="nav-link">
+        <i class="bi bi-person"></i>
+        Profile
+    </a>
+
+    <a href="#" class="nav-link" id="helpButton">
+        <i class="bi bi-question-circle"></i>
+        Help
+    </a>
+
+    <a href="#" class="nav-link" id="logoutBtn">
         <i class="bi bi-box-arrow-right"></i>
         Logout
-    </button>
-
-</div>
-
-            </div>
-
-        </div>
-
-    </nav>
-
-
-    <!-- =========================
-         MAIN
-    ========================= -->
-
-    <main class="main-container">
-
-
-        <!-- HERO SECTION -->
-
-        <section class="hero-section">
-
-            <div class="row align-items-center">
-
-                <div class="col-lg-7">
-
-                    <div class="welcome-text">
-                        Welcome Back
-                    </div>
-
-                    <h1 class="dashboard-title">
-                        Dashboard
-                    </h1>
-
-                    <p class="dashboard-subtitle">
-                        Track your habits, goals and progress.
-                    </p>
-
-                    <button
-                    class="btn-gold mt-3"
-    data-bs-toggle="modal"
-    data-bs-target="#addHabitModal">
-
-    <i class="bi bi-plus-lg"></i>
-    Add Habit
-
-</button>
-
-                </div>
-
-
-                <div class="col-lg-5 text-center">
-
-                    <div class="forge-icon">
-                        <i class="bi bi-fire"></i>
-                    </div>
-
-                    <div class="forge-text">
-                        DISCIPLINE FORGES DESTINY
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- OVERVIEW -->
-
-        <!-- OVERVIEW -->
-
-<section class="section">
-
-    <h2 class="section-title">
-        <i class="bi bi-graph-up-arrow"></i>
-        Overview
-    </h2>
-
-
-    <div class="row g-4">
-
-
-        <!-- TOTAL HABITS -->
-
-        <div class="col-lg-3 col-md-6">
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    <i class="bi bi-bullseye"></i>
-                </div>
-
-                <div class="stat-name">
-                    Total Habits
-                </div>
-
-                <div class="stat-number" id="totalHabits">
-                    0
-                </div>
-
-                <div class="stat-description">
-                    Keep building
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- CURRENT STREAK -->
-
-        <div class="col-lg-3 col-md-6">
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    <i class="bi bi-fire"></i>
-                </div>
-
-                <div class="stat-name">
-                    Current Streak
-                </div>
-
-                <div class="stat-number" id="currentStreak">
-                    0
-                </div>
-
-                <div class="stat-description">
-                    Let's get started
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- COMPLETED TODAY -->
-
-        <div class="col-lg-3 col-md-6">
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    <i class="bi bi-check-circle"></i>
-                </div>
-
-                <div class="stat-name">
-                    Completed Today
-                </div>
-
-                <div class="stat-number" id="completedToday">
-                    0
-                </div>
-
-                <div class="stat-description">
-                    You can do it!
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- SUCCESS RATE -->
-
-        <div class="col-lg-3 col-md-6">
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    <i class="bi bi-star"></i>
-                </div>
-
-                <div class="stat-name">
-                    Success Rate
-                </div>
-
-                <div class="stat-number" id="successRate">
-                    0%
-                </div>
-
-                <div class="stat-description">
-                    Aim for consistency
-                </div>
-
-            </div>
-
-        </div>
-
-
+    </a>
+
+    <div class="sidebar-quote">
+        “Small steps<br>
+        make big changes.”
     </div>
 
-</section>
-        </section>
-        <!-- =========================
-     GOALS SECTION
-========================= -->
-
-<section class="dashboard-section goals-section">
-
-    <div class="section-header">
-        <div>
-            <h2 class="section-title">Goals</h2>
-            <p class="section-subtitle">
-                Set targets and track your progress
-            </p>
-        </div>
-
-        <button
-            class="btn btn-warning"
-            data-bs-toggle="modal"
-            data-bs-target="#addGoalModal">
-            <i class="bi bi-plus-lg"></i>
-            Add Goal
-        </button>
-    </div>
+</aside>
 
 
-    <!-- Goals Container -->
-    <div id="goalsContainer" class="goals-container">
+<main class="main">
 
-        <div class="goal-empty-state">
-            <div class="empty-icon">
-                <i class="bi bi-bullseye"></i>
-            </div>
-
-            <div class="empty-title">
-                No goals yet.
-            </div>
-
-            <p class="empty-text">
-                Click "Add Goal" to create your first goal.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-<!-- =========================
-     TRACKING / RECENT ACTIVITY
-========================= -->
-
-<section class="dashboard-section">
-
-    <div class="section-header">
+    <!-- HEADER -->
+    <div class="topbar">
 
         <div>
-            <h2 class="section-title">
-                <i class="bi bi-clock-history"></i>
-                Recent Activity
-            </h2>
-
-            <p class="section-subtitle">
-                Track your latest habits, goals and progress.
-            </p>
-        </div>
-
-    </div>
-
-    <div id="activityContainer" class="activity-container">
-
-        <div class="activity-empty">
-
-            <i class="bi bi-clock-history"></i>
-
-            <p>Loading activity...</p>
-
-            <span>
-                Your latest actions will appear here.
-            </span>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     ADD GOAL MODAL
-========================= -->
-
-<div
-    class="modal fade"
-    id="addGoalModal"
-    tabindex="-1"
-    aria-hidden="true">
-
-    <div class="modal-dialog modal-dialog-centered">
-
-        <div class="modal-content habit-modal">
-
-            <div class="modal-header">
-
-                <h5 class="modal-title">
-                    <i class="bi bi-bullseye"></i>
-                    Add New Goal
-                </h5>
-
-                <button
-                    type="button"
-                    class="btn-close btn-close-white"
-                    data-bs-dismiss="modal">
-                </button>
-
+            <div class="welcome">
+                Welcome, <span class="gold" id="userName">Admin2</span>
             </div>
 
-
-            <form id="goalForm">
-
-                <div class="modal-body">
-
-                    <div class="mb-3">
-
-                        <label
-                            for="goalName"
-                            class="form-label">
-
-                            Goal Name
-
-                        </label>
-
-                        <input
-                            type="text"
-                            class="form-control habit-input"
-                            id="goalName"
-                            placeholder="e.g. Study for Exams"
-                            required>
-
-                    </div>
-
-
-                    <div class="mb-3">
-
-                        <label
-                            for="goalTarget"
-                            class="form-label">
-
-                            Target
-
-                        </label>
-
-                        <div class="input-group">
-
-                            <input
-                                type="number"
-                                class="form-control habit-input"
-                                id="goalTarget"
-                                min="1"
-                                placeholder="30"
-                                required>
-
-                            <select
-                                class="form-select habit-input"
-                                id="goalUnit">
-
-                                <option value="Times">
-                                    Times
-                                </option>
-
-                                <option value="Minutes">
-                                    Minutes
-                                </option>
-
-                                <option value="Hours">
-                                    Hours
-                                </option>
-
-                                <option value="Pages">
-                                    Pages
-                                </option>
-
-                                <option value="Steps">
-                                    Steps
-                                </option>
-
-                            </select>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="mb-3">
-
-                        <label
-                            for="goalDeadline"
-                            class="form-label">
-
-                            Deadline
-
-                        </label>
-
-                        <input
-                            type="date"
-                            class="form-control habit-input"
-                            id="goalDeadline">
-
-                    </div>
-
-                </div>
-
-
-                <div class="modal-footer">
-
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal">
-
-                        Cancel
-
-                    </button>
-
-
-                    <button
-                        type="submit"
-                        class="btn btn-warning">
-
-                        <i class="bi bi-check-lg"></i>
-                        Create Goal
-
-                    </button>
-
-                </div>
-
-            </form>
-
+            <div class="tagline">
+                Stay consistent. Build your future.
+            </div>
         </div>
 
-    </div>
+        <div class="user-box">
 
-</div>
+            <div>
+                <div class="user-email" id="userEmail">
+                    admin2@gmail.com
+                </div>
 
-
-<!-- =========================
-     LOG GOAL PROGRESS MODAL
-========================= -->
-
-<div
-    class="modal fade"
-    id="logProgressModal"
-    tabindex="-1"
-    aria-hidden="true">
-
-    <div class="modal-dialog modal-dialog-centered">
-
-        <div class="modal-content habit-modal">
-
-            <div class="modal-header">
-
-                <h5 class="modal-title">
-
-                    <i class="bi bi-plus-circle"></i>
-                    Log Progress
-
-                </h5>
-
-
-                <button
-                    type="button"
-                    class="btn-close btn-close-white"
-                    data-bs-dismiss="modal">
-                </button>
-
+                <div class="user-role">
+                    HabitForge Member
+                </div>
             </div>
 
-
-            <form id="progressForm">
-
-                <div class="modal-body">
-
-                    <input
-                        type="hidden"
-                        id="progressGoalId">
-
-
-                    <div class="mb-3">
-
-                        <label class="form-label">
-                            Goal
-                        </label>
-
-                        <div
-                            id="progressGoalName"
-                            class="form-control habit-input">
-
-                            Goal Name
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="mb-3">
-
-                        <label
-                            for="progressAmount"
-                            class="form-label">
-
-                            Progress to Add
-
-                        </label>
-
-                        <input
-                            type="number"
-                            class="form-control habit-input"
-                            id="progressAmount"
-                            min="0.1"
-                            step="0.1"
-                            placeholder="e.g. 2"
-                            required>
-
-                    </div>
-
-                </div>
-
-
-                <div class="modal-footer">
-
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal">
-
-                        Cancel
-
-                    </button>
-
-
-                    <button
-                        type="submit"
-                        class="btn btn-warning">
-
-                        <i class="bi bi-plus-lg"></i>
-                        Add Progress
-
-                    </button>
-
-                </div>
-
-            </form>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     EDIT GOAL MODAL
-========================= -->
-
-<div
-    class="modal fade"
-    id="editGoalModal"
-    tabindex="-1"
-    aria-hidden="true">
-
-    <div class="modal-dialog modal-dialog-centered">
-
-        <div class="modal-content habit-modal">
-
-            <div class="modal-header">
-
-                <h5 class="modal-title">
-
-                    <i class="bi bi-pencil-square"></i>
-                    Edit Goal
-
-                </h5>
-
-
-                <button
-                    type="button"
-                    class="btn-close btn-close-white"
-                    data-bs-dismiss="modal">
-                </button>
-
+            <div class="avatar" id="avatar">
+                A
             </div>
 
-
-            <form id="editGoalForm">
-
-                <div class="modal-body">
-
-                    <input
-                        type="hidden"
-                        id="editGoalId">
-
-
-                    <div class="mb-3">
-
-                        <label
-                            for="editGoalName"
-                            class="form-label">
-
-                            Goal Name
-
-                        </label>
-
-                        <input
-                            type="text"
-                            class="form-control habit-input"
-                            id="editGoalName"
-                            required>
-
-                    </div>
-
-
-                    <div class="mb-3">
-
-                        <label
-                            for="editGoalTarget"
-                            class="form-label">
-
-                            Target
-
-                        </label>
-
-                        <div class="input-group">
-
-                            <input
-                                type="number"
-                                class="form-control habit-input"
-                                id="editGoalTarget"
-                                min="1"
-                                required>
-
-
-                            <select
-                                class="form-select habit-input"
-                                id="editGoalUnit">
-
-                                <option value="Times">
-                                    Times
-                                </option>
-
-                                <option value="Minutes">
-                                    Minutes
-                                </option>
-
-                                <option value="Hours">
-                                    Hours
-                                </option>
-
-                                <option value="Pages">
-                                    Pages
-                                </option>
-
-                                <option value="Steps">
-                                    Steps
-                                </option>
-
-                            </select>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="mb-3">
-
-                        <label
-                            for="editGoalDeadline"
-                            class="form-label">
-
-                            Deadline
-
-                        </label>
-
-                        <input
-                            type="date"
-                            class="form-control habit-input"
-                            id="editGoalDeadline">
-
-                    </div>
-
-                </div>
-
-
-                <div class="modal-footer">
-
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal">
-
-                        Cancel
-
-                    </button>
-
-
-                    <button
-                        type="submit"
-                        class="btn btn-warning">
-
-                        <i class="bi bi-check-lg"></i>
-                        Update Goal
-
-                    </button>
-
-                </div>
-
-            </form>
-
         </div>
 
     </div>
 
-</div>
+
+    <!-- STATS -->
+    <div class="row g-2 stats-row">
+
+        <div class="col-6 col-xl-3">
+            <div class="stat-card stat-card-habits">
+                <div class="stat-icon"><i class="bi bi-list-check"></i></div>
+                <div class="stat-number" id="totalHabits">0</div>
+                <div class="stat-label">Total Habits</div>
+                <div class="stat-trend" id="totalHabitsTrend">Active habits in your routine</div>
+                
+                <div class="stat-chart-wrap">
+                    <svg class="stat-chart" id="totalHabitsChart" viewBox="0 0 180 72"
+                         preserveAspectRatio="none" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="habitsGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-opacity=".34"></stop>
+                                <stop offset="100%" stop-opacity="0"></stop>
+                            </linearGradient>
+                        </defs>
+                        <line class="chart-grid" x1="0" y1="58" x2="180" y2="58"></line>
+                        <path class="chart-area"></path>
+                        <polyline class="chart-line"></polyline>
+                        <circle class="chart-dot"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-xl-3">
+            <div class="stat-card stat-card-completed">
+                <div class="stat-icon"><i class="bi bi-check-circle"></i></div>
+                <div class="stat-number" id="completedToday">0</div>
+                <div class="stat-label">Completed Today</div>
+                <div class="stat-trend" id="completedTodayTrend">0% of habits completed</div>
+                
+                <div class="stat-chart-wrap">
+                    <svg class="stat-chart" id="completedTodayChart" viewBox="0 0 180 72"
+                         preserveAspectRatio="none" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="completedGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-opacity=".34"></stop>
+                                <stop offset="100%" stop-opacity="0"></stop>
+                            </linearGradient>
+                        </defs>
+                        <line class="chart-grid" x1="0" y1="58" x2="180" y2="58"></line>
+                        <path class="chart-area"></path>
+                        <polyline class="chart-line"></polyline>
+                        <circle class="chart-dot"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-xl-3">
+            <div class="stat-card stat-card-streak">
+                <div class="stat-icon"><i class="bi bi-fire"></i></div>
+                <div class="stat-number" id="currentStreak">0 days</div>
+                <div class="stat-label">Current Streak</div>
+                <div class="stat-trend" id="currentStreakTrend">Complete all habits to build your streak</div>
+                
+                <div class="stat-chart-wrap">
+                    <svg class="stat-chart" id="currentStreakChart" viewBox="0 0 180 72"
+                         preserveAspectRatio="none" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="streakGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-opacity=".34"></stop>
+                                <stop offset="100%" stop-opacity="0"></stop>
+                            </linearGradient>
+                        </defs>
+                        <line class="chart-grid" x1="0" y1="58" x2="180" y2="58"></line>
+                        <path class="chart-area"></path>
+                        <polyline class="chart-line"></polyline>
+                        <circle class="chart-dot"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-xl-3">
+            <div class="stat-card stat-card-progress">
+                <div class="stat-icon"><i class="bi bi-speedometer2"></i></div>
+                <div class="stat-number" id="todayProgress">0%</div>
+                <div class="stat-label">Today's Progress</div>
+                <div class="stat-trend" id="todayProgressTrend">Compared with yesterday</div>
+                
+                <div class="stat-chart-wrap">
+                    <svg class="stat-chart" id="todayProgressChart" viewBox="0 0 180 72"
+                         preserveAspectRatio="none" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="progressGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-opacity=".34"></stop>
+                                <stop offset="100%" stop-opacity="0"></stop>
+                            </linearGradient>
+                        </defs>
+                        <line class="chart-grid" x1="0" y1="58" x2="180" y2="58"></line>
+                        <path class="chart-area"></path>
+                        <polyline class="chart-line"></polyline>
+                        <circle class="chart-dot"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- MIDDLE -->
+    <div class="row g-2 middle-row">
+
         <!-- HABITS -->
+        <div class="col-xl-8">
 
-        <section class="section">
+            <section class="dashboard-card habits-card">
 
-            <h2 class="section-title">
-                <i class="bi bi-list-task"></i>
-                Your Habits
-            </h2>
+                <div class="section-head">
 
+                    <div>
+                        <div class="section-title">
+                            <i class="bi bi-calendar3"></i>
+                            Today's Habits
+                        </div>
 
-            <div class="habits-container" id="habitsContainer">
-
-                <div>
-
-                    <div class="empty-icon">
-                        <i class="bi bi-inbox"></i>
+                        <div class="section-subtitle">
+                            Complete your daily tasks and stay consistent.
+                        </div>
                     </div>
 
-                    <div class="empty-title">
-                        No habits yet.
-                    </div>
+                    <div class="action-buttons">
 
-                    <p class="empty-text">
-                        Click "Add Habit" to create your first habit.
-                    </p>
+                        <button
+                            type="button"
+                            class="gold-btn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#goalModal"
+                            id="addGoalButton"
+                        >
+                            <i class="bi bi-bullseye"></i>
+                            Add Goal
+                        </button>
+
+                        <button
+                            class="gold-btn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#habitModal"
+                            id="addHabitButton"
+                        >
+                            <i class="bi bi-plus-lg"></i>
+                            Add Habit
+                        </button>
+
+                    </div>
 
                 </div>
 
-            </div>
 
-        </section>
+                <div class="filters">
 
-
-    <!-- ADD HABIT MODAL -->
-
-<div class="modal fade" id="addHabitModal" tabindex="-1">
-
-    <div class="modal-dialog modal-dialog-centered">
-
-        <div class="modal-content habit-modal">
-
-            <div class="modal-header">
-
-                <h5 class="modal-title">
-                    <i class="bi bi-plus-circle"></i>
-                    Add New Habit
-                </h5>
-
-                <button
-                    type="button"
-                    class="btn-close btn-close-white"
-                    data-bs-dismiss="modal">
-                </button>
-
-            </div>
-
-            <div class="modal-body">
-
-               <form id="habitForm">
-
-                    <div class="mb-3">
-                        <label class="form-label">
-                            Habit Name
-                        </label>
-
-                        <input
-
-    type="text"
-    id="habitName"
-    class="form-control habit-input"
-    placeholder="e.g. Study 2 Hours">
-                    </div>
-
-
-                    <div class="mb-3">
-                        <label class="form-label">
-                            Category
-                        </label>
-
-                        <select id="habitCategory" class="form-select habit-input">
-
-                            <option selected>
-                                Select Category
-                            </option>
-
-                            <option>Study</option>
-                            <option>Fitness</option>
-                            <option>Health</option>
-                            <option>Learning</option>
-                            <option>Personal</option>
-
-                        </select>
-                    </div>
-
-
-                    <div class="mb-3">
-                        <label class="form-label">
-                            Frequency
-                        </label>
-
-                        <select id="habitFrequency" class="form-select habit-input">
-
-                            <option>Daily</option>
-                            <option>Weekly</option>
-
-                        </select>
-                    </div>
-
-
-                    <div class="mb-3">
-    <label class="form-label">
-        Target
-    </label>
-
-    <div class="d-flex gap-2">
-
-        <input
-            type="number"
-            id="habitTarget"
-            class="form-control habit-input"
-            placeholder="e.g. 2"
-            min="1">
-
-        <select
-            id="habitUnit"
-            class="form-select habit-input"
-            style="max-width: 180px;">
-
-            <option>Times</option>
-            <option>Minutes</option>
-            <option>Hours</option>
-            <option>Pages</option>
-            <option>Glasses</option>
-            <option>Steps</option>
-
-        </select>
-
-    </div>
-</div>
-
-
-                    <button
-                        type="submit"
-                        class="btn-save-habit">
-
-                        <i class="bi bi-check-lg"></i>
-                        Save Habit
-
+                    <button class="filter active" data-filter="all">
+                        All
                     </button>
 
-                </form>
+                    <button class="filter" data-filter="todo">
+                        <i class="bi bi-circle-fill"></i>
+                        To Do
+                    </button>
 
-            </div>
+                    <button class="filter completed" data-filter="completed">
+                        <i class="bi bi-check-circle"></i>
+                        Completed
+                    </button>
+
+                    <button class="filter overdue" data-filter="overdue">
+                        <i class="bi bi-circle"></i>
+                        Overdue
+                    </button>
+
+                </div>
+
+
+                <div id="habitList"></div>
+
+            </section>
+
+        </div>
+
+
+        <!-- QUICK ACTIONS -->
+        <div class="col-xl-4">
+
+            <section class="dashboard-card quick-card">
+
+                <div class="section-title">
+                    <i class="bi bi-lightning-fill"></i>
+                    Quick Actions
+                </div>
+
+                <div class="section-subtitle mb-3">
+                    Jump into your workspace.
+                </div>
+
+
+                <div class="quick-list">
+
+                    <a href="habits.html" class="quick-action">
+                        <span class="quick-icon">
+                            <i class="bi bi-list-check"></i>
+                        </span>
+                        <span>
+                            <strong>Manage Habits</strong>
+                            <small>View and organize habits</small>
+                        </span>
+                        <i class="bi bi-chevron-right quick-arrow"></i>
+                    </a>
+
+
+                    <a href="goals.html" class="quick-action">
+                        <span class="quick-icon">
+                            <i class="bi bi-bullseye"></i>
+                        </span>
+                        <span>
+                            <strong>Manage Goals</strong>
+                            <small>Track your objectives</small>
+                        </span>
+                        <i class="bi bi-chevron-right quick-arrow"></i>
+                    </a>
+
+
+                    <a href="tracking.html" class="quick-action">
+                        <span class="quick-icon">
+                            <i class="bi bi-graph-up"></i>
+                        </span>
+                        <span>
+                            <strong>View Analytics</strong>
+                            <small>See your progress</small>
+                        </span>
+                        <i class="bi bi-chevron-right quick-arrow"></i>
+                    </a>
+
+
+                    <a href="calendar.html" class="quick-action">
+                        <span class="quick-icon">
+                            <i class="bi bi-calendar3"></i>
+                        </span>
+                        <span>
+                            <strong>Open Calendar</strong>
+                            <small>Review your schedule</small>
+                        </span>
+                        <i class="bi bi-chevron-right quick-arrow"></i>
+                    </a>
+
+
+                    <a href="profile.html" class="quick-action">
+                        <span class="quick-icon">
+                            <i class="bi bi-person"></i>
+                        </span>
+                        <span>
+                            <strong>Account Settings</strong>
+                            <small>Manage your profile</small>
+                        </span>
+                        <i class="bi bi-chevron-right quick-arrow"></i>
+                    </a>
+
+                </div>
+
+            </section>
 
         </div>
 
     </div>
 
-</div>
+
+    <!-- BOTTOM -->
+    <div class="row g-2">
+
+        <div class="col-xl-7">
+
+            <section class="dashboard-card bottom-card">
+
+                <div class="bottom-title">
+                    <i class="bi bi-bar-chart-fill"></i>
+                    Today's Overall Progress
+                </div>
+
+                <div class="bottom-subtitle">
+                    Track your daily completion rate.
+                </div>
+
+                <div class="completion-row">
+                    <span>Completion</span>
+                    <span id="progressText">0%</span>
+                </div>
+
+                <div class="progress">
+                    <div
+                        class="progress-bar"
+                        id="progressBar"
+                        style="width:0%"
+                    ></div>
+                </div>
+
+            </section>
+
+        </div>
 
 
-<!-- EDIT HABIT MODAL -->
+        <div class="col-xl-5">
 
-<div class="modal fade" id="editHabitModal" tabindex="-1">
+            <section class="dashboard-card bottom-card">
 
-    <div class="modal-dialog modal-dialog-centered">
+                <div class="bottom-title">
+                    <i class="bi bi-clock-history"></i>
+                    Recent Activity
+                </div>
 
-        <div class="modal-content habit-modal">
+                <div class="bottom-subtitle">
+                    Your latest habit updates.
+                </div>
 
-            <div class="modal-header">
+                <div id="recentActivity">
 
-                <h5 class="modal-title">
-                    <i class="bi bi-pencil-square"></i>
-                    Edit Habit
-                </h5>
+                    <div class="activity-empty">
 
-                <button
-                    type="button"
-                    class="btn-close btn-close-white"
-                    data-bs-dismiss="modal">
-                </button>
+                        <div class="activity-icon">
+                            <i class="bi bi-file-earmark-text"></i>
+                        </div>
 
-            </div>
+                        <div>
+                            <div class="activity-title">
+                                No activity yet.
+                            </div>
 
-            <div class="modal-body">
-
-                <form id="editHabitForm">
-
-                    <input
-                        type="hidden"
-                        id="editHabitId">
-
-                    <div class="mb-3">
-
-                        <label class="form-label">
-                            Habit Name
-                        </label>
-
-                        <input
-                            type="text"
-                            id="editHabitName"
-                            class="form-control habit-input">
-
-                    </div>
-
-                    <div class="mb-3">
-
-                        <label class="form-label">
-                            Category
-                        </label>
-
-                        <select
-                            id="editHabitCategory"
-                            class="form-select habit-input">
-
-                            <option>Study</option>
-                            <option>Fitness</option>
-                            <option>Health</option>
-                            <option>Learning</option>
-                            <option>Personal</option>
-
-                        </select>
-
-                    </div>
-
-                    <div class="mb-3">
-
-                        <label class="form-label">
-                            Frequency
-                        </label>
-
-                        <select
-                            id="editHabitFrequency"
-                            class="form-select habit-input">
-
-                            <option>Daily</option>
-                            <option>Weekly</option>
-
-                        </select>
+                            <div class="activity-subtitle">
+                                Complete your first habit to see activity here.
+                            </div>
+                        </div>
 
                     </div>
 
-                    <div class="mb-3">
+                </div>
 
-    <label class="form-label">
-        Target
-    </label>
-
-    <div class="d-flex gap-2">
-
-        <input
-            type="number"
-            id="editHabitTarget"
-            class="form-control habit-input"
-            min="1">
-
-        <select
-            id="editHabitUnit"
-            class="form-select habit-input"
-            style="max-width: 180px;">
-
-            <option>Times</option>
-            <option>Minutes</option>
-            <option>Hours</option>
-            <option>Pages</option>
-            <option>Glasses</option>
-            <option>Steps</option>
-
-        </select>
-
-    </div>
-
-</div>
-
-                    <button
-                        type="submit"
-                        class="btn-save-habit">
-
-                        <i class="bi bi-check-lg"></i>
-                        Update Habit
-
-                    </button>
-
-                </form>
-
-            </div>
+            </section>
 
         </div>
 
     </div>
-
-</div>
-
 
 </main>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
-</body>
+<!-- ADD / EDIT HABIT MODAL -->
+<div
+    class="modal fade"
+    id="habitModal"
+    tabindex="-1"
+>
+    <div class="modal-dialog modal-dialog-centered">
 
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="habitModalTitle">
+                    Add Habit
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                ></button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <input
+                    type="hidden"
+                    id="habitId"
+                >
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Habit Name
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="habitName"
+                        placeholder="e.g. Drink Water"
+                    >
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Category
+                    </label>
+
+                    <select
+                        class="form-select"
+                        id="habitCategory"
+                    >
+                        <option value="Health">Health</option>
+                        <option value="Fitness">Fitness</option>
+                        <option value="Study">Study</option>
+                        <option value="Productivity">Productivity</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Lifestyle">Lifestyle</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Spiritual">Spiritual</option>
+                        <option value="Social">Social</option>
+                        <option value="Work">Work</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Frequency
+                    </label>
+
+                    <select
+                        class="form-select"
+                        id="habitFrequency"
+                    >
+                        <option value="Daily">Daily</option>
+                        <option value="Weekly">Weekly</option>
+                    </select>
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Target
+                    </label>
+
+                    <div class="row g-2">
+
+                        <div class="col-6">
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="habitTarget"
+                                min="0.01"
+                                step="0.01"
+                                placeholder="e.g. 30"
+                            >
+                        </div>
+
+                        <div class="col-6">
+                            <select
+                                class="form-select"
+                                id="habitUnit"
+                            ></select>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div
+                    id="habitMessage"
+                    class="small"
+                ></div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    data-bs-dismiss="modal"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="button"
+                    class="gold-btn"
+                    id="saveHabitBtn"
+                >
+                    Save Habit
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ADD GOAL MODAL -->
+<div class="modal fade" id="goalModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header goal-modal-header">
+                <div>
+                    <h5 class="modal-title">
+                        <i class="bi bi-bullseye"></i> Create a Goal
+                    </h5>
+                    <div class="goal-modal-subtitle">
+                        A goal is the bigger result you want to achieve.
+                    </div>
+                </div>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="goal-guide">
+                    <div class="goal-guide-icon">
+                        <i class="bi bi-lightbulb-fill"></i>
+                    </div>
+                    <div>
+                        <strong>Think big, then use habits as the small steps.</strong>
+                        <span>
+                            Example: “Read 12 books” is a goal. Reading every day is the habit that helps you reach it.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="goal-example-row">
+                    <button type="button" class="goal-example" data-goal-example="Read 12 Books" data-goal-target="12">
+                        <i class="bi bi-book"></i> Read 12 Books
+                    </button>
+                    <button type="button" class="goal-example" data-goal-example="Run 50 Kilometres" data-goal-target="50">
+                        <i class="bi bi-lightning"></i> Run 50 KM
+                    </button>
+                    <button type="button" class="goal-example" data-goal-example="Study 30 Hours" data-goal-target="30">
+                        <i class="bi bi-mortarboard"></i> Study 30 Hours
+                    </button>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        What do you want to achieve?
+                    </label>
+                    <input type="text" class="form-control" id="goalTitle"
+                           placeholder="e.g. Read 12 Books">
+                    <div class="field-hint">Keep it short and measurable.</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Why is this important? <span>(Optional)</span>
+                    </label>
+                    <textarea class="form-control" id="goalDescription" rows="3"
+                              placeholder="e.g. I want to improve my knowledge and reading habit."></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">What is your target?</label>
+                    <div class="goal-target-help">
+                        <i class="bi bi-info-circle"></i>
+                        Enter the number you want to reach.
+                    </div>
+                    <input type="number" class="form-control" id="goalTarget"
+                           min="1" step="1" placeholder="e.g. 12">
+                </div>
+
+                <div id="goalMessage" class="small"></div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
+                    Cancel
+                </button>
+                <button type="button" class="gold-btn" id="saveGoalBtn">
+                    <i class="bi bi-bullseye"></i> Save Goal
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- HELP MODAL -->
+<div class="modal fade" id="helpModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    HabitForge Help
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                ></button>
+            </div>
+
+            <div class="modal-body">
+
+                <p class="text-secondary small">
+                    Use the dashboard to manage habits, goals and daily progress.
+                </p>
+
+                <div class="small text-secondary">
+                    Complete habits using the check button, edit them with the pencil,
+                    and remove them with the trash button.
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="session.js"></script>
+
+<script>
+    const API =
+        "https://habitforge-server-k8gd.onrender.com";
+
+    let user = null;
+    let habits = [];
+
+    try {
+        user = JSON.parse(
+            localStorage.getItem("habitforgeUser")
+        );
+    } catch(e) {
+        user = null;
+    }
+
+    if (!user || !user._id) {
+        window.location.href = "login.html";
+    }
+
+
+    /* USER */
+
+    function setupUser(){
+
+        const name =
+            user.name ||
+            user.username ||
+            "Admin2";
+
+        const email =
+            user.email ||
+            "admin2@gmail.com";
+
+        document.getElementById("userName").textContent = name;
+        document.getElementById("userEmail").textContent = email;
+
+        document.getElementById("avatar").textContent =
+            name.charAt(0).toUpperCase();
+    }
+
+
+    /* TARGET UNITS */
+
+    const targetUnits = [
+        "Times",
+        "Repetitions",
+        "Pages",
+        "Tasks",
+        "Steps",
+        "Sets",
+        "Exercises",
+        "Items",
+        "Calories",
+        "Glasses",
+        "Litres",
+        "Millilitres",
+        "Seconds",
+        "Minutes",
+        "Hours",
+        "Days",
+        "Weeks",
+        "Meters",
+        "Kilometers",
+        "Miles"
+    ];
+
+
+    function updateHabitUnits(selectedUnit = "Times"){
+
+        const select =
+            document.getElementById("habitUnit");
+
+        select.innerHTML = "";
+
+        targetUnits.forEach(unit => {
+
+            const option =
+                document.createElement("option");
+
+            option.value = unit;
+            option.textContent = unit;
+
+            if(unit === selectedUnit){
+                option.selected = true;
+            }
+
+            select.appendChild(option);
+        });
+    }
+
+    updateHabitUnits();
+
+
+    /* HABIT ICONS */
+
+    function getHabitIcon(habit){
+
+        const name =
+            String(
+                habit.name ||
+                habit.habitName ||
+                ""
+            ).toLowerCase();
+
+        const category =
+            String(
+                habit.category ||
+                ""
+            ).toLowerCase();
+
+        const rules = [
+
+            {words:["water","drink","hydration"], icon:"bi-droplet-fill"},
+            {words:["walk","walking","steps","step"], icon:"bi-person-walking"},
+            {words:["run","running","jog","jogging"], icon:"bi-person-running"},
+            {words:["cycle","cycling","bike","bicycle"], icon:"bi-bicycle"},
+            {words:["swim","swimming"], icon:"bi-water"},
+
+            {words:["gym","workout","exercise","fitness","weight","weights"], icon:"bi-dumbbell-fill"},
+            {words:["yoga"], icon:"bi-person-standing"},
+            {words:["stretch","stretching"], icon:"bi-arrows-expand"},
+
+            {words:["read","reading","book","books"], icon:"bi-book-fill"},
+            {words:["study","studying","learn","learning","exam"], icon:"bi-mortarboard-fill"},
+            {words:["code","coding","programming","developer"], icon:"bi-code-slash"},
+            {words:["write","writing","journal","journaling"], icon:"bi-journal-text"},
+
+            {words:["sleep","sleeping","bed"], icon:"bi-moon-stars-fill"},
+            {words:["meditat","mindful","mindfulness"], icon:"bi-brightness-high-fill"},
+            {words:["pray","prayer","pooja"], icon:"bi-stars"},
+
+            {words:["food","eat","eating","diet","meal"], icon:"bi-egg-fried"},
+            {words:["fruit","apple"], icon:"bi-apple"},
+            {words:["coffee","tea"], icon:"bi-cup-hot-fill"},
+            {words:["cook","cooking"], icon:"bi-fire"},
+
+            {words:["medicine","medication","pill"], icon:"bi-capsule"},
+            {words:["health","healthy"], icon:"bi-heart-pulse-fill"},
+
+            {words:["work","office","career","job"], icon:"bi-briefcase-fill"},
+            {words:["money","saving","finance","budget"], icon:"bi-wallet2"},
+            {words:["shopping","shop"], icon:"bi-bag-fill"},
+
+            {words:["music","song","sing","singing"], icon:"bi-music-note-beamed"},
+            {words:["clean","cleaning"], icon:"bi-stars"},
+            {words:["house","home"], icon:"bi-house-fill"},
+            {words:["phone","screen","social"], icon:"bi-phone-fill"},
+            {words:["shower","bath"], icon:"bi-water"},
+
+            {words:["goal","target"], icon:"bi-bullseye"}
+        ];
+
+        /* Habit name gets priority. */
+        for(const rule of rules){
+
+            if(
+                rule.words.some(
+                    word => name.includes(word)
+                )
+            ){
+                return rule.icon;
+            }
+        }
+
+        /* Category is the fallback. */
+        const categoryIcons = {
+            health:"bi-heart-pulse-fill",
+            fitness:"bi-dumbbell-fill",
+            study:"bi-mortarboard-fill",
+            productivity:"bi-list-check",
+            personal:"bi-person-fill",
+            lifestyle:"bi-house-heart-fill",
+            finance:"bi-wallet2",
+            spiritual:"bi-stars",
+            social:"bi-people-fill",
+            work:"bi-briefcase-fill",
+            other:"bi-check2-circle"
+        };
+
+        return (
+            categoryIcons[category] ||
+            "bi-check2-circle"
+        );
+    }
+
+
+    /* LOAD HABITS */
+
+    async function loadHabits(){
+
+        const container =
+            document.getElementById("habitList");
+
+        if(!user || !user._id){
+            return;
+        }
+
+        try{
+
+            container.innerHTML = `
+                <div class="habit-empty">
+                    <i class="bi bi-hourglass-split"></i>
+                    <strong>Loading habits...</strong>
+                    <span>Fetching your habits from HabitForge.</span>
+                </div>
+            `;
+
+            const response =
+                await fetch(
+                    `${API}/api/habits?userId=${encodeURIComponent(user._id)}`
+                );
+
+            const data = await response.json();
+
+            if(!response.ok){
+                throw new Error(
+                    data.message ||
+                    "Unable to load habits."
+                );
+            }
+
+            habits = Array.isArray(data) ? data : [];
+
+            const today = getDateKey(0);
+
+            habits = habits.map(habit => ({
+                ...habit,
+                completedToday:
+                    Array.isArray(habit.completedDates) &&
+                    habit.completedDates.includes(today)
+            }));
+
+            renderHabits();
+
+        }catch(error){
+
+            console.error("Load habits error:", error);
+
+            habits = [];
+
+            container.innerHTML = `
+                <div class="habit-empty">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <strong>Unable to load habits</strong>
+                    <span>${escapeHTML(error.message || "Please try again.")}</span>
+                </div>
+            `;
+
+            document.getElementById("totalHabits").textContent = "0";
+            document.getElementById("completedToday").textContent = "0";
+            document.getElementById("todayProgress").textContent = "0%";
+            document.getElementById("progressText").textContent = "0%";
+            document.getElementById("progressBar").style.width = "0%";
+        }
+    }
+
+
+    /* DYNAMIC DASHBOARD STATS */
+
+    function getDateKey(offset = 0){
+        const date = new Date();
+        date.setHours(0,0,0,0);
+        date.setDate(date.getDate() + offset);
+        return date.getFullYear() + "-" +
+            String(date.getMonth() + 1).padStart(2, "0") + "-" +
+            String(date.getDate()).padStart(2, "0");
+    }
+
+    function getCompletedCountForDate(dateKey){
+        return habits.filter(habit => {
+            const dates = Array.isArray(habit.completedDates)
+                ? habit.completedDates : [];
+
+            // For today, use the same source the dashboard uses for its
+            // "Completed Today" number. This guarantees the chart and card
+            // cannot disagree.
+            if(dateKey === getDateKey(0)){
+                return (
+                    habit.completedToday === true ||
+                    habit.completed === true ||
+                    dates.includes(dateKey)
+                );
+            }
+
+            return dates.includes(dateKey);
+        }).length;
+    }
+
+    function getDailySeries(){
+        const series = [];
+
+        for(let i = -6; i <= 0; i++){
+            const dateKey = getDateKey(i);
+            const completed = getCompletedCountForDate(dateKey);
+
+            series.push({
+                date: dateKey,
+                completed,
+                percentage: habits.length
+                    ? Math.round((completed / habits.length) * 100)
+                    : 0
+            });
+        }
+
+        return series;
+    }
+
+    function getStreakSeries(){
+        const series = [];
+        let running = 0;
+
+        for(let i = -6; i <= 0; i++){
+            const completed = getCompletedCountForDate(getDateKey(i));
+            const fullDay = habits.length > 0 && completed >= habits.length;
+
+            if(fullDay){
+                running++;
+            }else{
+                running = 0;
+            }
+
+            series.push(running);
+        }
+
+        return series;
+    }
+
+    function getCurrentStreak(){
+        if(!habits.length) return 0;
+
+        let streak = 0;
+
+        for(let i = 0; i >= -3650; i--){
+            const completed = getCompletedCountForDate(getDateKey(i));
+
+            if(completed >= habits.length){
+                streak++;
+            }else{
+                break;
+            }
+        }
+
+        return streak;
+    }
+
+    function updateSparkline(id, values){
+        const svg = document.getElementById(id);
+        if(!svg || !values.length) return;
+
+        const line = svg.querySelector(".chart-line");
+        const area = svg.querySelector(".chart-area");
+        const dot = svg.querySelector(".chart-dot");
+
+        if(!line || !area || !dot) return;
+
+        const width = 180;
+        const top = 7;
+        const bottom = 57;
+        const height = bottom - top;
+
+        const minValue = 0;
+        const maxValue = Math.max(...values, 1);
+        const range = maxValue - minValue;
+
+        /*
+         * The shape is based ONLY on the supplied real values.
+         * When values change from 0 -> 50 -> 100, the graph visibly rises.
+         * When they fall, the graph visibly falls.
+         */
+        const points = values.map((value, index) => {
+            const x = values.length === 1
+                ? width / 2
+                : (index / (values.length - 1)) * width;
+
+            let normalized;
+
+            if(range === 0){
+                normalized = 0.08;
+            }else{
+                normalized = (value - minValue) / range;
+            }
+
+            const y = bottom - normalized * height;
+            return [x, y];
+        });
+
+        const linePoints = points
+            .map(([x,y]) => `${x.toFixed(1)},${y.toFixed(1)}`)
+            .join(" ");
+
+        const areaPath =
+            `M ${points[0][0].toFixed(1)} ${bottom} ` +
+            points.map(([x,y]) =>
+                `L ${x.toFixed(1)} ${y.toFixed(1)}`
+            ).join(" ") +
+            ` L ${points[points.length - 1][0].toFixed(1)} ${bottom} Z`;
+
+        line.setAttribute("points", linePoints);
+        area.setAttribute("d", areaPath);
+
+        const last = points[points.length - 1];
+        dot.setAttribute("cx", last[0].toFixed(1));
+        dot.setAttribute("cy", last[1].toFixed(1));
+    }
+
+    function updateChartGradient(id, color){
+        const svg = document.getElementById(id);
+        if(!svg) return;
+
+        const stops = svg.querySelectorAll("linearGradient stop");
+        if(stops.length >= 2){
+            stops[0].style.stopColor = color;
+            stops[1].style.stopColor = color;
+        }
+    }
+
+
+    function updateDashboardStats(){
+        const daily = getDailySeries();
+        const streakSeries = getStreakSeries();
+        const today = daily[6] || {completed:0,percentage:0};
+        const yesterday = daily[5] || today;
+        const streak = getCurrentStreak();
+
+        // These values are the live source for the visible charts.
+        const todayCompleted = today.completed;
+        const todayPercentage = today.percentage;
+
+        document.getElementById("currentStreak").textContent =
+            `${streak} day${streak === 1 ? "" : "s"}`;
+
+        // Every point in these charts comes from the user's actual habit data.
+        // Completing a habit changes today's completed/progress points immediately.
+        // Missing a full day resets the streak series at that day.
+        // Total Habits: show cumulative habits that existed by each day.
+        // This makes the card move when habits are created instead of drawing
+        // the same flat value seven times.
+        const totalHabitSeries = daily.map((_, index) => {
+            const dateKey = getDateKey(index - 6);
+
+            return habits.filter(habit => {
+                if(!habit.createdAt) return true;
+                const created = new Date(habit.createdAt);
+                if(Number.isNaN(created.getTime())) return true;
+
+                return (
+                    created.getFullYear() + "-" +
+                    String(created.getMonth() + 1).padStart(2, "0") + "-" +
+                    String(created.getDate()).padStart(2, "0")
+                ) <= dateKey;
+            }).length;
+        });
+
+        const completedSeries = daily.map(item => item.completed);
+        const progressSeries = daily.map(item => item.percentage);
+
+        // Force the last point to use the same live values shown above.
+        completedSeries[completedSeries.length - 1] = todayCompleted;
+        progressSeries[progressSeries.length - 1] = todayPercentage;
+
+        updateSparkline("totalHabitsChart", totalHabitSeries);
+        updateSparkline("completedTodayChart", completedSeries);
+        updateSparkline("currentStreakChart", streakSeries);
+        updateSparkline("todayProgressChart", progressSeries);
+
+        updateChartGradient("totalHabitsChart", "#d4af37");
+        updateChartGradient("completedTodayChart", "#42d98a");
+        updateChartGradient("currentStreakChart", "#f07b32");
+        updateChartGradient("todayProgressChart", "#38a8e8");
+
+        document.getElementById("totalHabitsTrend").textContent =
+            habits.length ? "Active habits in your routine" : "Add your first habit";
+
+        document.getElementById("completedTodayTrend").textContent =
+            `${today.completed} of ${habits.length} habits completed`;
+
+        document.getElementById("currentStreakTrend").textContent =
+            streak > 0
+                ? `${streak} consecutive full day${streak === 1 ? "" : "s"}`
+                : "Streak resets when a full day is missed";
+
+        const change = today.percentage - yesterday.percentage;
+        document.getElementById("todayProgressTrend").textContent =
+            change === 0 ? "Same as yesterday" :
+            `${change > 0 ? "+" : ""}${change}% vs yesterday`;
+    }
+
+
+    /* RENDER */
+
+    function renderHabits(){
+
+        const container =
+            document.getElementById("habitList");
+
+        container.innerHTML = "";
+
+        const today = getDateKey(0);
+
+        const completedToday =
+            habits.filter(h => {
+                const completedDates =
+                    Array.isArray(h.completedDates)
+                        ? h.completedDates
+                        : [];
+
+                return (
+                    h.completed === true ||
+                    h.completedToday === true ||
+                    completedDates.includes(today)
+                );
+            }).length;
+
+        document.getElementById("totalHabits")
+            .textContent = habits.length;
+
+        document.getElementById("completedToday")
+            .textContent = completedToday;
+
+        const percentage =
+            habits.length
+                ? Math.round(
+                    (completedToday / habits.length) * 100
+                )
+                : 0;
+
+        document.getElementById("todayProgress")
+            .textContent = percentage + "%";
+
+        document.querySelectorAll(".stat-card")
+            .forEach(card => {
+                card.style.setProperty(
+                    "--progress",
+                    percentage
+                );
+            });
+
+        document.getElementById("progressText")
+            .textContent = percentage + "%";
+
+        document.getElementById("progressBar")
+            .style.width = percentage + "%";
+
+        updateDashboardStats();
+
+
+        if(!habits.length){
+
+            container.innerHTML = `
+                <div class="habit-empty">
+                    <i class="bi bi-clipboard2-check"></i>
+                    <strong>Add more habits to see them here</strong>
+                    <span>Start building a better you, one habit at a time.</span>
+                </div>
+            `;
+
+            return;
+        }
+
+
+        habits.forEach(habit => {
+
+            const completedDates =
+                Array.isArray(habit.completedDates)
+                    ? habit.completedDates
+                    : [];
+
+            const completed =
+                habit.completed === true ||
+                habit.completedToday === true ||
+                completedDates.includes(today);
+
+            const row =
+                document.createElement("div");
+
+            row.className = "habit-row";
+
+            const category =
+                habit.category || "General";
+
+            const frequency =
+                habit.frequency || "Daily";
+
+            const unit =
+                habit.unit || "Times";
+
+            const target =
+                habit.target != null &&
+                habit.target !== ""
+                    ? ` &nbsp; • &nbsp; Target: ${escapeHTML(String(habit.target))} ${escapeHTML(unit)}`
+                    : "";
+
+            row.innerHTML = `
+
+                <button
+                    class="habit-check ${completed ? "completed" : ""}"
+                    onclick="toggleComplete('${habit._id}', ${completed})"
+                    title="Complete habit"
+                >
+                    <i class="bi bi-check-lg"></i>
+                </button>
+
+                <div>
+
+                    <div class="habit-name ${completed ? "completed" : ""}">
+                        <span class="habit-icon habit-icon-${getHabitIcon(habit).replace("bi-","")}">
+                            <i class="bi ${getHabitIcon(habit)}"></i>
+                        </span>
+
+                        ${escapeHTML(
+                            habit.name ||
+                            habit.habitName ||
+                            "Unnamed Habit"
+                        )}
+                    </div>
+
+                    <div class="habit-meta">
+                        <i class="bi bi-tag"></i>
+                        ${escapeHTML(category)}
+                        &nbsp; • &nbsp;
+                        <i class="bi bi-calendar3"></i>
+                        ${escapeHTML(frequency)}
+                        ${target}
+                    </div>
+
+                </div>
+
+
+                <div class="habit-actions">
+
+                    <button
+                        class="habit-action complete"
+                        onclick="toggleComplete('${habit._id}', ${completed})"
+                        title="${completed ? "Undo" : "Complete"}"
+                    >
+                        <i class="bi ${
+                            completed
+                                ? "bi-check-circle-fill"
+                                : "bi-check-circle"
+                        }"></i>
+                    </button>
+
+                    <button
+                        class="habit-action edit"
+                        onclick="editHabit('${habit._id}')"
+                        title="Edit"
+                    >
+                        <i class="bi bi-pencil"></i>
+                    </button>
+
+                    <button
+                        class="habit-action delete"
+                        onclick="deleteHabit('${habit._id}')"
+                        title="Delete"
+                    >
+                        <i class="bi bi-trash"></i>
+                    </button>
+
+                </div>
+            `;
+
+            container.appendChild(row);
+        });
+    }
+
+
+    /* ESCAPE */
+
+    function escapeHTML(value){
+
+        return String(value)
+            .replaceAll("&","&amp;")
+            .replaceAll("<","&lt;")
+            .replaceAll(">","&gt;")
+            .replaceAll('"',"&quot;")
+            .replaceAll("'","&#039;");
+    }
+
+
+    /* ADD / EDIT */
+
+    document.getElementById("saveHabitBtn")
+        .addEventListener(
+            "click",
+            saveHabit
+        );
+
+
+    async function saveHabit(){
+
+        const message =
+            document.getElementById("habitMessage");
+
+        const id =
+            document.getElementById("habitId").value;
+
+        const name =
+            document.getElementById("habitName").value.trim();
+
+        const category =
+            document.getElementById("habitCategory").value.trim();
+
+        const frequency =
+            document.getElementById("habitFrequency").value;
+
+        const target =
+            Number(
+                document.getElementById("habitTarget").value
+            );
+
+        const unit =
+            document.getElementById("habitUnit").value;
+
+
+        if(!name){
+
+            message.textContent =
+                "Please enter a habit name.";
+
+            message.className =
+                "small text-danger";
+
+            return;
+        }
+
+        if(!Number.isFinite(target) || target <= 0){
+
+            message.textContent =
+                "Please enter a target greater than 0.";
+
+            message.className =
+                "small text-danger";
+
+            return;
+        }
+
+
+        const method =
+            id ? "PUT" : "POST";
+
+        const url =
+            id
+                ? `${API}/api/habits/${id}`
+                : `${API}/api/habits`;
+
+
+        try{
+
+            const response =
+                await fetch(
+                    url,
+                    {
+                        method,
+                        headers:{
+                            "Content-Type":"application/json"
+                        },
+                        body:JSON.stringify({
+                            userId:user._id,
+                            name,
+                            category,
+                            frequency,
+                            target,
+                            unit
+                        })
+                    }
+                );
+
+            const data =
+                await response.json();
+
+            if(!response.ok){
+                throw new Error(
+                    data.message ||
+                    "Unable to save habit"
+                );
+            }
+
+
+            bootstrap.Modal
+                .getOrCreateInstance(
+                    document.getElementById("habitModal")
+                )
+                .hide();
+
+            resetHabitForm();
+
+            await loadHabits();
+
+        }catch(error){
+
+            console.error(error);
+
+            message.textContent =
+                error.message;
+
+            message.className =
+                "small text-danger";
+        }
+    }
+
+
+    function editHabit(id){
+
+        const habit =
+            habits.find(
+                h => String(h._id) === String(id)
+            );
+
+        if(!habit) return;
+
+        document.getElementById("habitModalTitle")
+            .textContent = "Edit Habit";
+
+        document.getElementById("habitId")
+            .value = habit._id;
+
+        document.getElementById("habitName")
+            .value =
+            habit.name ||
+            habit.habitName ||
+            "";
+
+        document.getElementById("habitCategory")
+            .value =
+            habit.category ||
+            "";
+
+        document.getElementById("habitFrequency")
+            .value =
+            habit.frequency ||
+            "Daily";
+
+
+        const unit =
+            habit.unit || "Times";
+
+        updateHabitUnits(unit);
+
+        document.getElementById("habitTarget")
+            .value =
+            habit.target != null
+                ? habit.target
+                : "";
+
+        document.getElementById("habitUnit")
+            .value = unit;
+
+        document.getElementById("habitMessage")
+            .textContent = "";
+
+        bootstrap.Modal
+            .getOrCreateInstance(
+                document.getElementById("habitModal")
+            )
+            .show();
+    }
+
+
+    function resetHabitForm(){
+
+        document.getElementById("habitModalTitle")
+            .textContent = "Add Habit";
+
+        document.getElementById("habitId")
+            .value = "";
+
+        document.getElementById("habitName")
+            .value = "";
+
+        document.getElementById("habitCategory")
+            .value = "";
+
+        document.getElementById("habitFrequency")
+            .value = "Daily";
+
+        updateHabitUnits("Times");
+
+        document.getElementById("habitTarget")
+            .value = "";
+
+        document.getElementById("habitUnit")
+            .value = "Times";
+
+        document.getElementById("habitMessage")
+            .textContent = "";
+    }
+
+
+    document.getElementById("addHabitButton")
+        .addEventListener(
+            "click",
+            resetHabitForm
+        );
+
+
+    /* COMPLETE */
+
+    async function toggleComplete(id, completed){
+
+        try{
+
+            const response =
+                await fetch(
+                    `${API}/api/habits/${id}/complete`,
+                    {
+                        method:"PUT",
+                        headers:{
+                            "Content-Type":"application/json"
+                        },
+                        body:JSON.stringify({
+                            userId:user._id,
+                            date:getDateKey(0)
+                        })
+                    }
+                );
+
+            if(!response.ok){
+                throw new Error("Unable to update habit");
+            }
+
+            await loadHabits();
+
+        }catch(error){
+
+            console.error(error);
+            alert(error.message);
+        }
+    }
+
+
+    /* DELETE */
+
+    async function deleteHabit(id){
+
+        if(!confirm("Delete this habit?")){
+            return;
+        }
+
+        try{
+
+            const response =
+                await fetch(
+                    `${API}/api/habits/${id}?userId=${encodeURIComponent(user._id)}`,
+                    {
+                        method:"DELETE"
+                    }
+                );
+
+            if(!response.ok){
+                throw new Error("Unable to delete habit");
+            }
+
+            await loadHabits();
+
+        }catch(error){
+
+            console.error(error);
+            alert(error.message);
+        }
+    }
+
+
+    /* FILTERS */
+
+    document.querySelectorAll(".filter")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    document.querySelectorAll(".filter")
+                        .forEach(
+                            item =>
+                                item.classList.remove("active")
+                        );
+
+                    button.classList.add("active");
+
+                    const filter =
+                        button.dataset.filter;
+
+                    document.querySelectorAll(
+                        "#habitList .habit-row"
+                    ).forEach(row => {
+
+                        const completed =
+                            row.querySelector(".habit-check")
+                                ?.classList.contains("completed");
+
+                        if(filter === "all"){
+                            row.style.display = "";
+                        }
+                        else if(filter === "completed"){
+                            row.style.display =
+                                completed ? "grid" : "none";
+                        }
+                        else if(filter === "todo"){
+                            row.style.display =
+                                completed ? "none" : "grid";
+                        }
+                        else{
+                            row.style.display = "none";
+                        }
+                    });
+                }
+            );
+        });
+
+
+    /* GOAL EXAMPLES */
+
+    document.querySelectorAll(".goal-example").forEach(button => {
+        button.addEventListener("click", () => {
+            document.getElementById("goalTitle").value =
+                button.dataset.goalExample || "";
+
+            document.getElementById("goalTarget").value =
+                button.dataset.goalTarget || "";
+
+            document.getElementById("goalDescription").focus();
+        });
+    });
+
+
+    /* GOALS */
+
+    document.getElementById("saveGoalBtn")
+        .addEventListener(
+            "click",
+            saveGoal
+        );
+
+
+    async function saveGoal(){
+
+        const title =
+            document.getElementById("goalTitle")
+                .value
+                .trim();
+
+        const description =
+            document.getElementById("goalDescription")
+                .value
+                .trim();
+
+        const target =
+            Number(
+                document.getElementById("goalTarget")
+                    .value
+            );
+
+        const message =
+            document.getElementById("goalMessage");
+
+
+        if(!title){
+
+            message.textContent =
+                "Please enter a goal title.";
+
+            message.className =
+                "small text-danger";
+
+            return;
+        }
+
+
+        if(!Number.isFinite(target) || target <= 0){
+
+            message.textContent =
+                "Please enter a target greater than 0.";
+
+            message.className =
+                "small text-danger";
+
+            return;
+        }
+
+
+        try{
+
+            const response =
+                await fetch(
+                    `${API}/api/goals`,
+                    {
+                        method:"POST",
+
+                        headers:{
+                            "Content-Type":"application/json"
+                        },
+
+                        body:JSON.stringify({
+                            userId:user._id,
+                            title,
+                            description,
+                            target
+                        })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if(!response.ok){
+
+                throw new Error(
+                    data.message ||
+                    "Unable to save goal."
+                );
+            }
+
+
+            bootstrap.Modal
+                .getOrCreateInstance(
+                    document.getElementById("goalModal")
+                )
+                .hide();
+
+
+            document.getElementById("goalTitle")
+                .value = "";
+
+            document.getElementById("goalDescription")
+                .value = "";
+
+            document.getElementById("goalTarget")
+                .value = "";
+
+            message.textContent = "";
+
+
+        }catch(error){
+
+            console.error(error);
+
+            message.textContent =
+                error.message;
+
+            message.className =
+                "small text-danger";
+        }
+    }
+
+
+    /* HELP */
+
+    document.getElementById("helpButton")
+        .addEventListener(
+            "click",
+            event => {
+
+                event.preventDefault();
+
+                bootstrap.Modal
+                    .getOrCreateInstance(
+                        document.getElementById("helpModal")
+                    )
+                    .show();
+            }
+        );
+
+
+    document.getElementById("addGoalButton")
+        .addEventListener(
+            "click",
+            () => {
+
+                document.getElementById("goalTitle")
+                    .value = "";
+
+                document.getElementById("goalDescription")
+                    .value = "";
+
+                document.getElementById("goalTarget")
+                    .value = "";
+
+                document.getElementById("goalMessage")
+                    .textContent = "";
+            }
+        );
+
+
+    /* LOGOUT */
+
+    document.getElementById("logoutBtn")
+        .addEventListener(
+            "click",
+            event => {
+
+                event.preventDefault();
+
+                localStorage.removeItem(
+                    "habitforgeUser"
+                );
+
+                window.location.href =
+                    "login.html";
+            }
+        );
+
+
+    /* INIT */
+
+    setupUser();
+    loadHabits();
+
+</script>
+
+</body>
 </html>
