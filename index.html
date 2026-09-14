@@ -259,6 +259,7 @@
         }
 
         .goal-modal-header .modal-title i{color:var(--gold);}
+
         .goal-modal-subtitle{
             color:#747a7a;
             font-size:9px;
@@ -695,11 +696,10 @@
             font-size:11px;
             font-weight:800;
         }
-
-        .bottom-title i{
-            color:var(--gold);
-            margin-right:7px;
-        }
+    
+            .bottom-title i{
+                color:var(--gold);
+                        }
 
         .bottom-subtitle{
             color:#707575;
@@ -929,7 +929,7 @@
                 <div class="stat-number" id="totalHabits">0</div>
                 <div class="stat-label">Total Habits</div>
                 <div class="stat-trend" id="totalHabitsTrend">Active habits in your routine</div>
-                
+
                 <div class="stat-chart-wrap">
                     <svg class="stat-chart" id="totalHabitsChart" viewBox="0 0 180 72"
                          preserveAspectRatio="none" aria-hidden="true">
@@ -954,7 +954,7 @@
                 <div class="stat-number" id="completedToday">0</div>
                 <div class="stat-label">Completed Today</div>
                 <div class="stat-trend" id="completedTodayTrend">0% of habits completed</div>
-                
+
                 <div class="stat-chart-wrap">
                     <svg class="stat-chart" id="completedTodayChart" viewBox="0 0 180 72"
                          preserveAspectRatio="none" aria-hidden="true">
@@ -979,7 +979,7 @@
                 <div class="stat-number" id="currentStreak">0 days</div>
                 <div class="stat-label">Current Streak</div>
                 <div class="stat-trend" id="currentStreakTrend">Complete all habits to build your streak</div>
-                
+
                 <div class="stat-chart-wrap">
                     <svg class="stat-chart" id="currentStreakChart" viewBox="0 0 180 72"
                          preserveAspectRatio="none" aria-hidden="true">
@@ -1004,7 +1004,708 @@
                 <div class="stat-number" id="todayProgress">0%</div>
                 <div class="stat-label">Today's Progress</div>
                 <div class="stat-trend" id="todayProgressTrend">Compared with yesterday</div>
-                
+
+                <div class="stat-chart-wrap">
+                    <svg class="stat-chart" id="todayProgressChart" viewBox="0 0 180 72"
+                         preserveAspectRatio="none" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="progressGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-opacity=".34"></stop>
+                                <stop offset="100%" stop-opacity="0"></stop>
+                            </linearGradient>
+                        </defs>
+                        <line class="chart-grid" x1="0" y1="58" x2="180" y2="58"></line>
+                        <path class="chart-area"></path>
+                        <polyline class="chart-line"></polyline>
+                        <circle class="chart-dot"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- MIDDLE -->
+    <div class="row g-2 middle-row">
+
+        <!-- HABITS -->
+        <div class="col-xl-8">
+
+            <section class="dashboard-card habits-card">
+
+                <div class="section-head">
+
+                    <div>
+                        <div class="section-title">
+                            <i class="bi bi-calendar3"></i>
+                            Today's Habits
+                        </div>
+
+                        <div class="section-subtitle">
+                            Complete your daily tasks and stay consistent.
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+
+                        <button
+                            type="button"
+                            class="gold-btn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#goalModal"
+                            id="addGoalButton"
+                        >
+                            <i class="bi bi-bullseye"></i>
+                            Add Goal
+                        </button>
+
+                        <button
+                            class="gold-btn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#habitModal"
+                            id="addHabitButton"
+                        >
+                            <i class="bi bi-plus-lg"></i>
+                            Add Habit
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="filters">
+
+                    <button class="filter active" data-filter="all">
+                        All
+                    </button>
+
+                    <button class="filter" data-filter="todo">
+                        <i class="bi bi-circle-fill"></i>
+                        To Do
+                    </button>
+
+                    <button class="filter completed" data-filter="completed">
+                        <i class="bi bi-check-circle"></i>
+                        Completed
+                    </button>
+
+                    <button class="filter overdue" data-filter="overdue">
+                        <i class="bi bi-circle"></i>
+                        Overdue
+                    </button>
+
+                </div>
+
+
+                <div id="habitList"></div>
+
+            </section>
+
+        </div>
+
+
+        <!-- QUICK ACTIONS -->
+        <div class="col-xl-4">
+
+            <section class="dashboard-card quick-card">
+
+                <div class="section-title">
+                    <i class="bi bi-lightning-fill"></i>
+                    Quick Actions
+                </div>
+
+                <div class="section-subtitle mb-3">
+                    Jump into your workspace.
+                </div>
+
+
+                <div class="quick-list">
+
+                    <a href="habits.html" class="quick-action">
+                        <span class="quick-icon">
+                            <i class="bi bi-list-check"></i>
+                        </span>
+                        <span>
+                            <strong>Manage Habits</strong>
+                            <small>View and organize habits</small>
+                        </span>
+                        <i class="bi bi-chevron-right quick-arrow"></i>
+                    </a>
+
+
+                    <a href="goals.html" class="quick-action">
+                        <span class="quick-icon">
+                            <i class="bi bi-bullseye"></i>
+                        </span>
+                        <span>
+                            <strong>Manage Goals</strong>
+                            <small>Track your objectives</small>
+                        </span>
+                        <i class="bi bi-chevron-right quick-arrow"></i>
+                    </a>
+
+
+                    <a href="tracking.html" class="quick-action">
+                        <span class="quick-icon">
+                            <i class="bi bi-graph-up"></i>
+                        </span>
+                        <span>
+                            <strong>View Analytics</strong>
+                            <small>See your progress</small>
+                        </span>
+                        <i class="bi bi-chevron-right quick-arrow"></i>
+                    </a>
+
+
+                    <a href="calendar.html" class="quick-action">
+                        <span class="quick-icon">
+                            <i class="bi bi-calendar3"></i>
+                        </span>
+                        <span>
+                            <strong>Open Calendar</strong>
+                            <small>Review your schedule</small>
+                        </span>
+                        <i class="bi bi-chevron-right quick-arrow"></i>
+                    </a>
+
+
+                    <a href="profile.html" class="quick-action">
+                        <span class="quick-icon">
+                            <i class="bi bi-person"></i>
+                        </span>
+                        <span>
+                            <strong>Account Settings</strong>
+                            <small>Manage your profile</small>
+                        </span>
+                        <i class="bi bi-chevron-right quick-arrow"></i>
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOTTOM -->
+    <div class="row g-2">
+
+        <div class="col-xl-7">
+
+            <section class="dashboard-card bottom-card">
+
+                <div class="bottom-title">
+                    <i class="bi bi-bar-chart-fill"></i>
+                    Today's Overall Progress
+                </div>
+
+                <div class="bottom-subtitle">
+                    Track your daily completion rate.
+                </div>
+
+                <div class="completion-row">
+                    <span>Completion</span>
+                    <span id="progressText">0%</span>
+                </div>
+
+                <div class="progress">
+                    <div
+                        class="progress-bar"
+                        id="progressBar"
+                        style="width:0%"
+                    ></div>
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <div class="col-xl-5">
+
+            <section class="dashboard-card bottom-card">
+
+                <div class="bottom-title">
+                    <i class="bi bi-clock-history"></i>
+                    Recent Activity
+                </div>
+
+                <div class="bottom-subtitle">
+                    Your latest habit updates.
+                </div>
+
+                <div id="recentActivity">
+
+                    <div class="activity-empty">
+
+                        <div class="activity-icon">
+                            <i class="bi bi-file-earmark-text"></i>
+                        </div>
+
+                        <div>
+                            <div class="activity-title">
+                                No activity yet.
+                            </div>
+
+                            <div class="activity-subtitle">
+                                Complete your first habit to see activity here.
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- ADD / EDIT HABIT MODAL -->
+<div
+    class="modal fade"
+    id="habitModal"
+    tabindex="-1"
+>
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="habitModalTitle">
+                    Add Habit
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                ></button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <input
+                    type="hidden"
+                    id="habitId"
+                >
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Habit Name
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="habitName"
+                        placeholder="e.g. Drink Water"
+                    >
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Category
+                    </label>
+
+                    <select
+                        class="form-select"
+                        id="habitCategory"
+                    >
+                        <option value="Health">Health</option>
+                        <option value="Fitness">Fitness</option>
+                        <option value="Study">Study</option>
+                        <option value="Productivity">Productivity</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Lifestyle">Lifestyle</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Spiritual">Spiritual</option>
+                        <option value="Social">Social</option>
+                        <option value="Work">Work</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Frequency
+                    </label>
+
+                    <select
+                        class="form-select"
+                        id="habitFrequency"
+                    >
+                        <option value="Daily">Daily</option>
+                        <option value="Weekly">Weekly</option>
+                    </select>
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label">
+                        Target
+                    </label>
+
+                    <div class="row g-2">
+
+                        <div class="col-6">
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="habitTarget"
+                                min="0.01"
+                                step="0.01"
+                                placeholder="e.g. 30"
+                            >
+                        </div>
+
+                        <div class="col-6">
+                            <select
+                                class="form-select"
+                                id="habitUnit"
+                            ></select>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div
+                    id="habitMessage"
+                    class="small"
+                ></div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    data-bs-dismiss="modal"
+                >
+                    Cancel
+                </button>
+                        }
+
+        .bottom-subtitle{
+            color:#707575;
+            font-size:7px;
+            margin-top:2px;
+            margin-bottom:12px;
+        }
+
+        .completion-row{
+            display:flex;
+            justify-content:space-between;
+            color:#a5a9a9;
+            font-size:8px;
+            margin-bottom:6px;
+        }
+
+        .completion-row span:last-child{
+            color:var(--gold);
+            font-weight:800;
+        }
+
+        .progress{
+            height:8px;
+            background:#292d2d;
+            border-radius:5px;
+        }
+
+        .progress-bar{
+            background:var(--gold);
+        }
+
+        .activity-empty{
+            display:flex;
+            align-items:center;
+            gap:9px;
+            margin-top:14px;
+        }
+
+        .activity-icon{
+            width:27px;
+            height:27px;
+            border:1px solid #343939;
+            border-radius:5px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#777;
+        }
+
+        .activity-title{
+            font-size:8px;
+            color:#bbb;
+        }
+
+        .activity-subtitle{
+            font-size:6.5px;
+            color:#606565;
+            margin-top:3px;
+        }
+
+        /* MODAL */
+        .modal-content{
+            background:#101313;
+            color:#fff;
+            border:1px solid #343939;
+            border-radius:10px;
+        }
+
+        .modal-header,.modal-footer{
+            border-color:#292d2d;
+        }
+
+        .form-label{
+            color:#aaa;
+            font-size:11px;
+            font-weight:700;
+        }
+
+        .form-control,.form-select{
+            background:#171a1a;
+            border:1px solid #343939;
+            color:#fff;
+            font-size:11px;
+        }
+
+        .form-control:focus,.form-select:focus{
+            background:#171a1a;
+            color:#fff;
+            border-color:var(--gold);
+            box-shadow:0 0 0 .15rem rgba(212,175,55,.12);
+        }
+
+        .form-select option{
+            background:#171a1a;
+        }
+
+        .btn-close{
+            filter:invert(1);
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:900px){
+            .sidebar{width:130px}
+            .main{margin-left:130px}
+            .welcome{font-size:20px}
+        }
+
+        @media(max-width:700px){
+            .sidebar{
+                position:relative;
+                width:100%;
+                height:auto;
+                min-height:auto;
+            }
+
+            .sidebar-quote{display:none}
+            .main{margin-left:0;padding:12px}
+            .topbar{height:auto}
+            .user-box{display:none}
+            .action-buttons{width:100%}
+            .action-buttons .gold-btn{flex:1}
+            .habit-row{grid-template-columns:32px 1fr}
+            .habit-actions{grid-column:2}
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+    <div class="brand">
+        <i class="bi bi-lightning-fill"></i> HabitForge
+    </div>
+
+    <a href="index.html" class="nav-link active">
+        <i class="bi bi-ui-checks-grid"></i>
+        Dashboard
+    </a>
+
+    <a href="habits.html" class="nav-link">
+        <i class="bi bi-check2-square"></i>
+        My Habits
+    </a>
+
+    <a href="goals.html" class="nav-link">
+        <i class="bi bi-bullseye"></i>
+        Goals
+    </a>
+
+    <a href="tracking.html" class="nav-link">
+        <i class="bi bi-bar-chart-fill"></i>
+        Tracking
+    </a>
+
+    <a href="calendar.html" class="nav-link">
+        <i class="bi bi-calendar3"></i>
+        Calendar
+    </a>
+
+    <a href="profile.html" class="nav-link">
+        <i class="bi bi-person"></i>
+        Profile
+    </a>
+
+    <a href="#" class="nav-link" id="helpButton">
+        <i class="bi bi-question-circle"></i>
+        Help
+    </a>
+
+    <a href="#" class="nav-link" id="logoutBtn">
+        <i class="bi bi-box-arrow-right"></i>
+        Logout
+    </a>
+
+    <div class="sidebar-quote">
+        “Small steps<br>
+        make big changes.”
+    </div>
+
+</aside>
+
+
+<main class="main">
+
+    <!-- HEADER -->
+    <div class="topbar">
+
+        <div>
+            <div class="welcome">
+                Welcome, <span class="gold" id="userName">Admin2</span>
+            </div>
+
+            <div class="tagline">
+                Stay consistent. Build your future.
+            </div>
+        </div>
+
+        <div class="user-box">
+
+            <div>
+                <div class="user-email" id="userEmail">
+                    admin2@gmail.com
+                </div>
+
+                <div class="user-role">
+                    HabitForge Member
+                </div>
+            </div>
+
+            <div class="avatar" id="avatar">
+                A
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- STATS -->
+    <div class="row g-2 stats-row">
+
+        <div class="col-6 col-xl-3">
+            <div class="stat-card stat-card-habits">
+                <div class="stat-icon"><i class="bi bi-list-check"></i></div>
+                <div class="stat-number" id="totalHabits">0</div>
+                <div class="stat-label">Total Habits</div>
+                <div class="stat-trend" id="totalHabitsTrend">Active habits in your routine</div>
+
+                <div class="stat-chart-wrap">
+                    <svg class="stat-chart" id="totalHabitsChart" viewBox="0 0 180 72"
+                         preserveAspectRatio="none" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="habitsGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-opacity=".34"></stop>
+                                <stop offset="100%" stop-opacity="0"></stop>
+                            </linearGradient>
+                        </defs>
+                        <line class="chart-grid" x1="0" y1="58" x2="180" y2="58"></line>
+                        <path class="chart-area"></path>
+                        <polyline class="chart-line"></polyline>
+                        <circle class="chart-dot"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-xl-3">
+            <div class="stat-card stat-card-completed">
+                <div class="stat-icon"><i class="bi bi-check-circle"></i></div>
+                <div class="stat-number" id="completedToday">0</div>
+                <div class="stat-label">Completed Today</div>
+                <div class="stat-trend" id="completedTodayTrend">0% of habits completed</div>
+
+                <div class="stat-chart-wrap">
+                    <svg class="stat-chart" id="completedTodayChart" viewBox="0 0 180 72"
+                         preserveAspectRatio="none" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="completedGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-opacity=".34"></stop>
+                                <stop offset="100%" stop-opacity="0"></stop>
+                            </linearGradient>
+                        </defs>
+                        <line class="chart-grid" x1="0" y1="58" x2="180" y2="58"></line>
+                        <path class="chart-area"></path>
+                        <polyline class="chart-line"></polyline>
+                        <circle class="chart-dot"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-xl-3">
+            <div class="stat-card stat-card-streak">
+                <div class="stat-icon"><i class="bi bi-fire"></i></div>
+                <div class="stat-number" id="currentStreak">0 days</div>
+                <div class="stat-label">Current Streak</div>
+                <div class="stat-trend" id="currentStreakTrend">Complete all habits to build your streak</div>
+
+                <div class="stat-chart-wrap">
+                    <svg class="stat-chart" id="currentStreakChart" viewBox="0 0 180 72"
+                         preserveAspectRatio="none" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="streakGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-opacity=".34"></stop>
+                                <stop offset="100%" stop-opacity="0"></stop>
+                            </linearGradient>
+                        </defs>
+                        <line class="chart-grid" x1="0" y1="58" x2="180" y2="58"></line>
+                        <path class="chart-area"></path>
+                        <polyline class="chart-line"></polyline>
+                        <circle class="chart-dot"></circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-xl-3">
+            <div class="stat-card stat-card-progress">
+                <div class="stat-icon"><i class="bi bi-speedometer2"></i></div>
+                <div class="stat-number" id="todayProgress">0%</div>
+                <div class="stat-label">Today's Progress</div>
+                <div class="stat-trend" id="todayProgressTrend">Compared with yesterday</div>
+
                 <div class="stat-chart-wrap">
                     <svg class="stat-chart" id="todayProgressChart" viewBox="0 0 180 72"
                          preserveAspectRatio="none" aria-hidden="true">
@@ -1415,1257 +2116,594 @@
 
     </div>
 </div>
+        </div>
 
+        <div class="habit-actions">
 
-<!-- ADD GOAL MODAL -->
-<div class="modal fade" id="goalModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
+            <button
+                class="habit-action complete"
+                onclick="toggleComplete('${habit._id}', ${completed})"
+                title="${completed ? "Undo" : "Complete"}"
+            >
+                <i class="bi ${
+                    completed
+                        ? "bi-check-circle-fill"
+                        : "bi-check-circle"
+                }"></i>
+            </button>
 
-        <div class="modal-content">
+            <button
+                class="habit-action edit"
+                onclick="editHabit('${habit._id}')"
+                title="Edit"
+            >
+                <i class="bi bi-pencil"></i>
+            </button>
 
-            <div class="modal-header goal-modal-header">
-                <div>
-                    <h5 class="modal-title">
-                        <i class="bi bi-bullseye"></i> Create a Goal
-                    </h5>
-                    <div class="goal-modal-subtitle">
-                        A goal is the bigger result you want to achieve.
-                    </div>
-                </div>
-
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <div class="modal-body">
-
-                <div class="goal-guide">
-                    <div class="goal-guide-icon">
-                        <i class="bi bi-lightbulb-fill"></i>
-                    </div>
-                    <div>
-                        <strong>Think big, then use habits as the small steps.</strong>
-                        <span>
-                            Example: “Read 12 books” is a goal. Reading every day is the habit that helps you reach it.
-                        </span>
-                    </div>
-                </div>
-
-                <div class="goal-example-row">
-                    <button type="button" class="goal-example" data-goal-example="Read 12 Books" data-goal-target="12">
-                        <i class="bi bi-book"></i> Read 12 Books
-                    </button>
-                    <button type="button" class="goal-example" data-goal-example="Run 50 Kilometres" data-goal-target="50">
-                        <i class="bi bi-lightning"></i> Run 50 KM
-                    </button>
-                    <button type="button" class="goal-example" data-goal-example="Study 30 Hours" data-goal-target="30">
-                        <i class="bi bi-mortarboard"></i> Study 30 Hours
-                    </button>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">
-                        What do you want to achieve?
-                    </label>
-                    <input type="text" class="form-control" id="goalTitle"
-                           placeholder="e.g. Read 12 Books">
-                    <div class="field-hint">Keep it short and measurable.</div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">
-                        Why is this important? <span>(Optional)</span>
-                    </label>
-                    <textarea class="form-control" id="goalDescription" rows="3"
-                              placeholder="e.g. I want to improve my knowledge and reading habit."></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">What is your target?</label>
-                    <div class="goal-target-help">
-                        <i class="bi bi-info-circle"></i>
-                        Enter the number you want to reach.
-                    </div>
-                    <input type="number" class="form-control" id="goalTarget"
-                           min="1" step="1" placeholder="e.g. 12">
-                </div>
-
-                <div id="goalMessage" class="small"></div>
-
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
-                    Cancel
-                </button>
-                <button type="button" class="gold-btn" id="saveGoalBtn">
-                    <i class="bi bi-bullseye"></i> Save Goal
-                </button>
-            </div>
+            <button
+                class="habit-action delete"
+                onclick="deleteHabit('${habit._id}')"
+                title="Delete"
+            >
+                <i class="bi bi-trash"></i>
+            </button>
 
         </div>
-    </div>
-</div>
+    `;
 
+    container.appendChild(row);
+});
 
-<!-- HELP MODAL -->
-<div class="modal fade" id="helpModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
 
-            <div class="modal-header">
-                <h5 class="modal-title">
-                    HabitForge Help
-                </h5>
+/* ESCAPE */
 
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                ></button>
-            </div>
+function escapeHTML(value){
 
-            <div class="modal-body">
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
 
-                <p class="text-secondary small">
-                    Use the dashboard to manage habits, goals and daily progress.
-                </p>
 
-                <div class="small text-secondary">
-                    Complete habits using the check button, edit them with the pencil,
-                    and remove them with the trash button.
-                </div>
+/* ADD / EDIT */
 
-            </div>
+document.getElementById("saveHabitBtn")
+    .addEventListener(
+        "click",
+        saveHabit
+    );
 
-        </div>
-    </div>
-</div>
 
+async function saveHabit(){
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="session.js"></script>
+    const message =
+        document.getElementById("habitMessage");
 
-<script>
-    const API =
-        "https://habitforge-server-k8gd.onrender.com";
+    const id =
+        document.getElementById("habitId").value;
 
-    let user = null;
-    let habits = [];
+    const name =
+        document.getElementById("habitName").value.trim();
 
-    try {
-        user = JSON.parse(
-            localStorage.getItem("habitforgeUser")
-        );
-    } catch(e) {
-        user = null;
-    }
+    const category =
+        document.getElementById("habitCategory").value.trim();
 
-    if (!user || !user._id) {
-        window.location.href = "login.html";
-    }
+    const frequency =
+        document.getElementById("habitFrequency").value;
 
-
-    /* USER */
-
-    function setupUser(){
-
-        const name =
-            user.name ||
-            user.username ||
-            "Admin2";
-
-        const email =
-            user.email ||
-            "admin2@gmail.com";
-
-        document.getElementById("userName").textContent = name;
-        document.getElementById("userEmail").textContent = email;
-
-        document.getElementById("avatar").textContent =
-            name.charAt(0).toUpperCase();
-    }
-
-
-    /* TARGET UNITS */
-
-    const targetUnits = [
-        "Times",
-        "Repetitions",
-        "Pages",
-        "Tasks",
-        "Steps",
-        "Sets",
-        "Exercises",
-        "Items",
-        "Calories",
-        "Glasses",
-        "Litres",
-        "Millilitres",
-        "Seconds",
-        "Minutes",
-        "Hours",
-        "Days",
-        "Weeks",
-        "Meters",
-        "Kilometers",
-        "Miles"
-    ];
-
-
-    function updateHabitUnits(selectedUnit = "Times"){
-
-        const select =
-            document.getElementById("habitUnit");
-
-        select.innerHTML = "";
-
-        targetUnits.forEach(unit => {
-
-            const option =
-                document.createElement("option");
-
-            option.value = unit;
-            option.textContent = unit;
-
-            if(unit === selectedUnit){
-                option.selected = true;
-            }
-
-            select.appendChild(option);
-        });
-    }
-
-    updateHabitUnits();
-
-
-    /* HABIT ICONS */
-
-    function getHabitIcon(habit){
-
-        const name =
-            String(
-                habit.name ||
-                habit.habitName ||
-                ""
-            ).toLowerCase();
-
-        const category =
-            String(
-                habit.category ||
-                ""
-            ).toLowerCase();
-
-        const rules = [
-
-            {words:["water","drink","hydration"], icon:"bi-droplet-fill"},
-            {words:["walk","walking","steps","step"], icon:"bi-person-walking"},
-            {words:["run","running","jog","jogging"], icon:"bi-person-running"},
-            {words:["cycle","cycling","bike","bicycle"], icon:"bi-bicycle"},
-            {words:["swim","swimming"], icon:"bi-water"},
-
-            {words:["gym","workout","exercise","fitness","weight","weights"], icon:"bi-dumbbell-fill"},
-            {words:["yoga"], icon:"bi-person-standing"},
-            {words:["stretch","stretching"], icon:"bi-arrows-expand"},
-
-            {words:["read","reading","book","books"], icon:"bi-book-fill"},
-            {words:["study","studying","learn","learning","exam"], icon:"bi-mortarboard-fill"},
-            {words:["code","coding","programming","developer"], icon:"bi-code-slash"},
-            {words:["write","writing","journal","journaling"], icon:"bi-journal-text"},
-
-            {words:["sleep","sleeping","bed"], icon:"bi-moon-stars-fill"},
-            {words:["meditat","mindful","mindfulness"], icon:"bi-brightness-high-fill"},
-            {words:["pray","prayer","pooja"], icon:"bi-stars"},
-
-            {words:["food","eat","eating","diet","meal"], icon:"bi-egg-fried"},
-            {words:["fruit","apple"], icon:"bi-apple"},
-            {words:["coffee","tea"], icon:"bi-cup-hot-fill"},
-            {words:["cook","cooking"], icon:"bi-fire"},
-
-            {words:["medicine","medication","pill"], icon:"bi-capsule"},
-            {words:["health","healthy"], icon:"bi-heart-pulse-fill"},
-
-            {words:["work","office","career","job"], icon:"bi-briefcase-fill"},
-            {words:["money","saving","finance","budget"], icon:"bi-wallet2"},
-            {words:["shopping","shop"], icon:"bi-bag-fill"},
-
-            {words:["music","song","sing","singing"], icon:"bi-music-note-beamed"},
-            {words:["clean","cleaning"], icon:"bi-stars"},
-            {words:["house","home"], icon:"bi-house-fill"},
-            {words:["phone","screen","social"], icon:"bi-phone-fill"},
-            {words:["shower","bath"], icon:"bi-water"},
-
-            {words:["goal","target"], icon:"bi-bullseye"}
-        ];
-
-        /* Habit name gets priority. */
-        for(const rule of rules){
-
-            if(
-                rule.words.some(
-                    word => name.includes(word)
-                )
-            ){
-                return rule.icon;
-            }
-        }
-
-        /* Category is the fallback. */
-        const categoryIcons = {
-            health:"bi-heart-pulse-fill",
-            fitness:"bi-dumbbell-fill",
-            study:"bi-mortarboard-fill",
-            productivity:"bi-list-check",
-            personal:"bi-person-fill",
-            lifestyle:"bi-house-heart-fill",
-            finance:"bi-wallet2",
-            spiritual:"bi-stars",
-            social:"bi-people-fill",
-            work:"bi-briefcase-fill",
-            other:"bi-check2-circle"
-        };
-
-        return (
-            categoryIcons[category] ||
-            "bi-check2-circle"
-        );
-    }
-
-
-    /* LOAD HABITS */
-
-    async function loadHabits(){
-
-        const container =
-            document.getElementById("habitList");
-
-        if(!user || !user._id){
-            return;
-        }
-
-        try{
-
-            container.innerHTML = `
-                <div class="habit-empty">
-                    <i class="bi bi-hourglass-split"></i>
-                    <strong>Loading habits...</strong>
-                    <span>Fetching your habits from HabitForge.</span>
-                </div>
-            `;
-
-            const response =
-                await fetch(
-                    `${API}/api/habits?userId=${encodeURIComponent(user._id)}`
-                );
-
-            const data = await response.json();
-
-            if(!response.ok){
-                throw new Error(
-                    data.message ||
-                    "Unable to load habits."
-                );
-            }
-
-            habits = Array.isArray(data) ? data : [];
-
-            const today = getDateKey(0);
-
-            habits = habits.map(habit => ({
-                ...habit,
-                completedToday:
-                    Array.isArray(habit.completedDates) &&
-                    habit.completedDates.includes(today)
-            }));
-
-            renderHabits();
-
-        }catch(error){
-
-            console.error("Load habits error:", error);
-
-            habits = [];
-
-            container.innerHTML = `
-                <div class="habit-empty">
-                    <i class="bi bi-exclamation-triangle"></i>
-                    <strong>Unable to load habits</strong>
-                    <span>${escapeHTML(error.message || "Please try again.")}</span>
-                </div>
-            `;
-
-            document.getElementById("totalHabits").textContent = "0";
-            document.getElementById("completedToday").textContent = "0";
-            document.getElementById("todayProgress").textContent = "0%";
-            document.getElementById("progressText").textContent = "0%";
-            document.getElementById("progressBar").style.width = "0%";
-        }
-    }
-
-
-    /* DYNAMIC DASHBOARD STATS */
-
-    function getDateKey(offset = 0){
-        const date = new Date();
-        date.setHours(0,0,0,0);
-        date.setDate(date.getDate() + offset);
-        return date.getFullYear() + "-" +
-            String(date.getMonth() + 1).padStart(2, "0") + "-" +
-            String(date.getDate()).padStart(2, "0");
-    }
-
-    function getCompletedCountForDate(dateKey){
-        return habits.filter(habit => {
-            const dates = Array.isArray(habit.completedDates)
-                ? habit.completedDates : [];
-
-            // For today, use the same source the dashboard uses for its
-            // "Completed Today" number. This guarantees the chart and card
-            // cannot disagree.
-            if(dateKey === getDateKey(0)){
-                return (
-                    habit.completedToday === true ||
-                    habit.completed === true ||
-                    dates.includes(dateKey)
-                );
-            }
-
-            return dates.includes(dateKey);
-        }).length;
-    }
-
-    function getDailySeries(){
-        const series = [];
-
-        for(let i = -6; i <= 0; i++){
-            const dateKey = getDateKey(i);
-            const completed = getCompletedCountForDate(dateKey);
-
-            series.push({
-                date: dateKey,
-                completed,
-                percentage: habits.length
-                    ? Math.round((completed / habits.length) * 100)
-                    : 0
-            });
-        }
-
-        return series;
-    }
-
-    function getStreakSeries(){
-        const series = [];
-        let running = 0;
-
-        for(let i = -6; i <= 0; i++){
-            const completed = getCompletedCountForDate(getDateKey(i));
-            const fullDay = habits.length > 0 && completed >= habits.length;
-
-            if(fullDay){
-                running++;
-            }else{
-                running = 0;
-            }
-
-            series.push(running);
-        }
-
-        return series;
-    }
-
-    function getCurrentStreak(){
-        if(!habits.length) return 0;
-
-        let streak = 0;
-
-        for(let i = 0; i >= -3650; i--){
-            const completed = getCompletedCountForDate(getDateKey(i));
-
-            if(completed >= habits.length){
-                streak++;
-            }else{
-                break;
-            }
-        }
-
-        return streak;
-    }
-
-    function updateSparkline(id, values){
-        const svg = document.getElementById(id);
-        if(!svg || !values.length) return;
-
-        const line = svg.querySelector(".chart-line");
-        const area = svg.querySelector(".chart-area");
-        const dot = svg.querySelector(".chart-dot");
-
-        if(!line || !area || !dot) return;
-
-        const width = 180;
-        const top = 7;
-        const bottom = 57;
-        const height = bottom - top;
-
-        const minValue = 0;
-        const maxValue = Math.max(...values, 1);
-        const range = maxValue - minValue;
-
-        /*
-         * The shape is based ONLY on the supplied real values.
-         * When values change from 0 -> 50 -> 100, the graph visibly rises.
-         * When they fall, the graph visibly falls.
-         */
-        const points = values.map((value, index) => {
-            const x = values.length === 1
-                ? width / 2
-                : (index / (values.length - 1)) * width;
-
-            let normalized;
-
-            if(range === 0){
-                normalized = 0.08;
-            }else{
-                normalized = (value - minValue) / range;
-            }
-
-            const y = bottom - normalized * height;
-            return [x, y];
-        });
-
-        const linePoints = points
-            .map(([x,y]) => `${x.toFixed(1)},${y.toFixed(1)}`)
-            .join(" ");
-
-        const areaPath =
-            `M ${points[0][0].toFixed(1)} ${bottom} ` +
-            points.map(([x,y]) =>
-                `L ${x.toFixed(1)} ${y.toFixed(1)}`
-            ).join(" ") +
-            ` L ${points[points.length - 1][0].toFixed(1)} ${bottom} Z`;
-
-        line.setAttribute("points", linePoints);
-        area.setAttribute("d", areaPath);
-
-        const last = points[points.length - 1];
-        dot.setAttribute("cx", last[0].toFixed(1));
-        dot.setAttribute("cy", last[1].toFixed(1));
-    }
-
-    function updateChartGradient(id, color){
-        const svg = document.getElementById(id);
-        if(!svg) return;
-
-        const stops = svg.querySelectorAll("linearGradient stop");
-        if(stops.length >= 2){
-            stops[0].style.stopColor = color;
-            stops[1].style.stopColor = color;
-        }
-    }
-
-
-    function updateDashboardStats(){
-        const daily = getDailySeries();
-        const streakSeries = getStreakSeries();
-        const today = daily[6] || {completed:0,percentage:0};
-        const yesterday = daily[5] || today;
-        const streak = getCurrentStreak();
-
-        // These values are the live source for the visible charts.
-        const todayCompleted = today.completed;
-        const todayPercentage = today.percentage;
-
-        document.getElementById("currentStreak").textContent =
-            `${streak} day${streak === 1 ? "" : "s"}`;
-
-        // Every point in these charts comes from the user's actual habit data.
-        // Completing a habit changes today's completed/progress points immediately.
-        // Missing a full day resets the streak series at that day.
-        // Total Habits: show cumulative habits that existed by each day.
-        // This makes the card move when habits are created instead of drawing
-        // the same flat value seven times.
-        const totalHabitSeries = daily.map((_, index) => {
-            const dateKey = getDateKey(index - 6);
-
-            return habits.filter(habit => {
-                if(!habit.createdAt) return true;
-                const created = new Date(habit.createdAt);
-                if(Number.isNaN(created.getTime())) return true;
-
-                return (
-                    created.getFullYear() + "-" +
-                    String(created.getMonth() + 1).padStart(2, "0") + "-" +
-                    String(created.getDate()).padStart(2, "0")
-                ) <= dateKey;
-            }).length;
-        });
-
-        const completedSeries = daily.map(item => item.completed);
-        const progressSeries = daily.map(item => item.percentage);
-
-        // Force the last point to use the same live values shown above.
-        completedSeries[completedSeries.length - 1] = todayCompleted;
-        progressSeries[progressSeries.length - 1] = todayPercentage;
-
-        updateSparkline("totalHabitsChart", totalHabitSeries);
-        updateSparkline("completedTodayChart", completedSeries);
-        updateSparkline("currentStreakChart", streakSeries);
-        updateSparkline("todayProgressChart", progressSeries);
-
-        updateChartGradient("totalHabitsChart", "#d4af37");
-        updateChartGradient("completedTodayChart", "#42d98a");
-        updateChartGradient("currentStreakChart", "#f07b32");
-        updateChartGradient("todayProgressChart", "#38a8e8");
-
-        document.getElementById("totalHabitsTrend").textContent =
-            habits.length ? "Active habits in your routine" : "Add your first habit";
-
-        document.getElementById("completedTodayTrend").textContent =
-            `${today.completed} of ${habits.length} habits completed`;
-
-        document.getElementById("currentStreakTrend").textContent =
-            streak > 0
-                ? `${streak} consecutive full day${streak === 1 ? "" : "s"}`
-                : "Streak resets when a full day is missed";
-
-        const change = today.percentage - yesterday.percentage;
-        document.getElementById("todayProgressTrend").textContent =
-            change === 0 ? "Same as yesterday" :
-            `${change > 0 ? "+" : ""}${change}% vs yesterday`;
-    }
-
-
-    /* RENDER */
-
-    function renderHabits(){
-
-        const container =
-            document.getElementById("habitList");
-
-        container.innerHTML = "";
-
-        const today = getDateKey(0);
-
-        const completedToday =
-            habits.filter(h => {
-                const completedDates =
-                    Array.isArray(h.completedDates)
-                        ? h.completedDates
-                        : [];
-
-                return (
-                    h.completed === true ||
-                    h.completedToday === true ||
-                    completedDates.includes(today)
-                );
-            }).length;
-
-        document.getElementById("totalHabits")
-            .textContent = habits.length;
-
-        document.getElementById("completedToday")
-            .textContent = completedToday;
-
-        const percentage =
-            habits.length
-                ? Math.round(
-                    (completedToday / habits.length) * 100
-                )
-                : 0;
-
-        document.getElementById("todayProgress")
-            .textContent = percentage + "%";
-
-        document.querySelectorAll(".stat-card")
-            .forEach(card => {
-                card.style.setProperty(
-                    "--progress",
-                    percentage
-                );
-            });
-
-        document.getElementById("progressText")
-            .textContent = percentage + "%";
-
-        document.getElementById("progressBar")
-            .style.width = percentage + "%";
-
-        updateDashboardStats();
-
-
-        if(!habits.length){
-
-            container.innerHTML = `
-                <div class="habit-empty">
-                    <i class="bi bi-clipboard2-check"></i>
-                    <strong>Add more habits to see them here</strong>
-                    <span>Start building a better you, one habit at a time.</span>
-                </div>
-            `;
-
-            return;
-        }
-
-
-        habits.forEach(habit => {
-
-            const completedDates =
-                Array.isArray(habit.completedDates)
-                    ? habit.completedDates
-                    : [];
-
-            const completed =
-                habit.completed === true ||
-                habit.completedToday === true ||
-                completedDates.includes(today);
-
-            const row =
-                document.createElement("div");
-
-            row.className = "habit-row";
-
-            const category =
-                habit.category || "General";
-
-            const frequency =
-                habit.frequency || "Daily";
-
-            const unit =
-                habit.unit || "Times";
-
-            const target =
-                habit.target != null &&
-                habit.target !== ""
-                    ? ` &nbsp; • &nbsp; Target: ${escapeHTML(String(habit.target))} ${escapeHTML(unit)}`
-                    : "";
-
-            row.innerHTML = `
-
-                <button
-                    class="habit-check ${completed ? "completed" : ""}"
-                    onclick="toggleComplete('${habit._id}', ${completed})"
-                    title="Complete habit"
-                >
-                    <i class="bi bi-check-lg"></i>
-                </button>
-
-                <div>
-
-                    <div class="habit-name ${completed ? "completed" : ""}">
-                        <span class="habit-icon habit-icon-${getHabitIcon(habit).replace("bi-","")}">
-                            <i class="bi ${getHabitIcon(habit)}"></i>
-                        </span>
-
-                        ${escapeHTML(
-                            habit.name ||
-                            habit.habitName ||
-                            "Unnamed Habit"
-                        )}
-                    </div>
-
-                    <div class="habit-meta">
-                        <i class="bi bi-tag"></i>
-                        ${escapeHTML(category)}
-                        &nbsp; • &nbsp;
-                        <i class="bi bi-calendar3"></i>
-                        ${escapeHTML(frequency)}
-                        ${target}
-                    </div>
-
-                </div>
-
-
-                <div class="habit-actions">
-
-                    <button
-                        class="habit-action complete"
-                        onclick="toggleComplete('${habit._id}', ${completed})"
-                        title="${completed ? "Undo" : "Complete"}"
-                    >
-                        <i class="bi ${
-                            completed
-                                ? "bi-check-circle-fill"
-                                : "bi-check-circle"
-                        }"></i>
-                    </button>
-
-                    <button
-                        class="habit-action edit"
-                        onclick="editHabit('${habit._id}')"
-                        title="Edit"
-                    >
-                        <i class="bi bi-pencil"></i>
-                    </button>
-
-                    <button
-                        class="habit-action delete"
-                        onclick="deleteHabit('${habit._id}')"
-                        title="Delete"
-                    >
-                        <i class="bi bi-trash"></i>
-                    </button>
-
-                </div>
-            `;
-
-            container.appendChild(row);
-        });
-    }
-
-
-    /* ESCAPE */
-
-    function escapeHTML(value){
-
-        return String(value)
-            .replaceAll("&","&amp;")
-            .replaceAll("<","&lt;")
-            .replaceAll(">","&gt;")
-            .replaceAll('"',"&quot;")
-            .replaceAll("'","&#039;");
-    }
-
-
-    /* ADD / EDIT */
-
-    document.getElementById("saveHabitBtn")
-        .addEventListener(
-            "click",
-            saveHabit
+    const target =
+        Number(
+            document.getElementById("habitTarget").value
         );
 
+    const unit =
+        document.getElementById("habitUnit").value;
 
-    async function saveHabit(){
 
-        const message =
-            document.getElementById("habitMessage");
+    if(!name){
 
-        const id =
-            document.getElementById("habitId").value;
+        message.textContent =
+            "Please enter a habit name.";
 
-        const name =
-            document.getElementById("habitName").value.trim();
+        message.className =
+            "small text-danger";
 
-        const category =
-            document.getElementById("habitCategory").value.trim();
+        return;
+    }
 
-        const frequency =
-            document.getElementById("habitFrequency").value;
 
-        const target =
-            Number(
-                document.getElementById("habitTarget").value
+    if(!Number.isFinite(target) || target <= 0){
+
+        message.textContent =
+            "Please enter a target greater than 0.";
+
+        message.className =
+            "small text-danger";
+
+        return;
+    }
+
+
+    const method =
+        id ? "PUT" : "POST";
+
+    const url =
+        id
+            ? `${API}/api/habits/${id}`
+            : `${API}/api/habits`;
+
+
+    try{
+
+        const response =
+            await fetch(
+                url,
+                {
+                    method,
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+                    body:JSON.stringify({
+                        userId:user._id,
+                        name,
+                        category,
+                        frequency,
+                        target,
+                        unit
+                    })
+                }
             );
 
-        const unit =
-            document.getElementById("habitUnit").value;
+
+        const data =
+            await response.json();
 
 
-        if(!name){
+        if(!response.ok){
 
-            message.textContent =
-                "Please enter a habit name.";
-
-            message.className =
-                "small text-danger";
-
-            return;
-        }
-
-        if(!Number.isFinite(target) || target <= 0){
-
-            message.textContent =
-                "Please enter a target greater than 0.";
-
-            message.className =
-                "small text-danger";
-
-            return;
-        }
-
-
-        const method =
-            id ? "PUT" : "POST";
-
-        const url =
-            id
-                ? `${API}/api/habits/${id}`
-                : `${API}/api/habits`;
-
-
-        try{
-
-            const response =
-                await fetch(
-                    url,
-                    {
-                        method,
-                        headers:{
-                            "Content-Type":"application/json"
-                        },
-                        body:JSON.stringify({
-                            userId:user._id,
-                            name,
-                            category,
-                            frequency,
-                            target,
-                            unit
-                        })
-                    }
-                );
-
-            const data =
-                await response.json();
-
-            if(!response.ok){
-                throw new Error(
-                    data.message ||
-                    "Unable to save habit"
-                );
-            }
-
-
-            bootstrap.Modal
-                .getOrCreateInstance(
-                    document.getElementById("habitModal")
-                )
-                .hide();
-
-            resetHabitForm();
-
-            await loadHabits();
-
-        }catch(error){
-
-            console.error(error);
-
-            message.textContent =
-                error.message;
-
-            message.className =
-                "small text-danger";
-        }
-    }
-
-
-    function editHabit(id){
-
-        const habit =
-            habits.find(
-                h => String(h._id) === String(id)
+            throw new Error(
+                data.message ||
+                "Unable to save habit"
             );
+        }
 
-        if(!habit) return;
-
-        document.getElementById("habitModalTitle")
-            .textContent = "Edit Habit";
-
-        document.getElementById("habitId")
-            .value = habit._id;
-
-        document.getElementById("habitName")
-            .value =
-            habit.name ||
-            habit.habitName ||
-            "";
-
-        document.getElementById("habitCategory")
-            .value =
-            habit.category ||
-            "";
-
-        document.getElementById("habitFrequency")
-            .value =
-            habit.frequency ||
-            "Daily";
-
-
-        const unit =
-            habit.unit || "Times";
-
-        updateHabitUnits(unit);
-
-        document.getElementById("habitTarget")
-            .value =
-            habit.target != null
-                ? habit.target
-                : "";
-
-        document.getElementById("habitUnit")
-            .value = unit;
-
-        document.getElementById("habitMessage")
-            .textContent = "";
 
         bootstrap.Modal
             .getOrCreateInstance(
                 document.getElementById("habitModal")
             )
-            .show();
+            .hide();
+
+        resetHabitForm();
+
+        await loadHabits();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        message.textContent =
+            error.message;
+
+        message.className =
+            "small text-danger";
     }
+}
 
 
-    function resetHabitForm(){
+function editHabit(id){
 
-        document.getElementById("habitModalTitle")
-            .textContent = "Add Habit";
-
-        document.getElementById("habitId")
-            .value = "";
-
-        document.getElementById("habitName")
-            .value = "";
-
-        document.getElementById("habitCategory")
-            .value = "";
-
-        document.getElementById("habitFrequency")
-            .value = "Daily";
-
-        updateHabitUnits("Times");
-
-        document.getElementById("habitTarget")
-            .value = "";
-
-        document.getElementById("habitUnit")
-            .value = "Times";
-
-        document.getElementById("habitMessage")
-            .textContent = "";
-    }
-
-
-    document.getElementById("addHabitButton")
-        .addEventListener(
-            "click",
-            resetHabitForm
+    const habit =
+        habits.find(
+            h => String(h._id) === String(id)
         );
 
-
-    /* COMPLETE */
-
-    async function toggleComplete(id, completed){
-
-        try{
-
-            const response =
-                await fetch(
-                    `${API}/api/habits/${id}/complete`,
-                    {
-                        method:"PUT",
-                        headers:{
-                            "Content-Type":"application/json"
-                        },
-                        body:JSON.stringify({
-                            userId:user._id,
-                            date:getDateKey(0)
-                        })
-                    }
-                );
-
-            if(!response.ok){
-                throw new Error("Unable to update habit");
-            }
-
-            await loadHabits();
-
-        }catch(error){
-
-            console.error(error);
-            alert(error.message);
-        }
-    }
+    if(!habit) return;
 
 
-    /* DELETE */
-
-    async function deleteHabit(id){
-
-        if(!confirm("Delete this habit?")){
-            return;
-        }
-
-        try{
-
-            const response =
-                await fetch(
-                    `${API}/api/habits/${id}?userId=${encodeURIComponent(user._id)}`,
-                    {
-                        method:"DELETE"
-                    }
-                );
-
-            if(!response.ok){
-                throw new Error("Unable to delete habit");
-            }
-
-            await loadHabits();
-
-        }catch(error){
-
-            console.error(error);
-            alert(error.message);
-        }
-    }
+    document.getElementById("habitModalTitle")
+        .textContent = "Edit Habit";
 
 
-    /* FILTERS */
+    document.getElementById("habitId")
+        .value = habit._id;
 
-    document.querySelectorAll(".filter")
-        .forEach(button => {
 
-            button.addEventListener(
-                "click",
-                () => {
+    document.getElementById("habitName")
+        .value =
+        habit.name ||
+        habit.habitName ||
+        "";
 
-                    document.querySelectorAll(".filter")
-                        .forEach(
-                            item =>
-                                item.classList.remove("active")
-                        );
 
-                    button.classList.add("active");
+    document.getElementById("habitCategory")
+        .value =
+        habit.category ||
+        "";
 
-                    const filter =
-                        button.dataset.filter;
 
-                    document.querySelectorAll(
-                        "#habitList .habit-row"
-                    ).forEach(row => {
+    document.getElementById("habitFrequency")
+        .value =
+        habit.frequency ||
+        "Daily";
 
-                        const completed =
-                            row.querySelector(".habit-check")
-                                ?.classList.contains("completed");
 
-                        if(filter === "all"){
-                            row.style.display = "";
-                        }
-                        else if(filter === "completed"){
-                            row.style.display =
-                                completed ? "grid" : "none";
-                        }
-                        else if(filter === "todo"){
-                            row.style.display =
-                                completed ? "none" : "grid";
-                        }
-                        else{
-                            row.style.display = "none";
-                        }
-                    });
+    const unit =
+        habit.unit || "Times";
+
+    updateHabitUnits(unit);
+
+
+    document.getElementById("habitTarget")
+        .value =
+        habit.target != null
+            ? habit.target
+            : "";
+
+
+    document.getElementById("habitUnit")
+        .value = unit;
+
+
+    document.getElementById("habitMessage")
+        .textContent = "";
+
+
+    bootstrap.Modal
+        .getOrCreateInstance(
+            document.getElementById("habitModal")
+        )
+        .show();
+}
+
+
+function resetHabitForm(){
+
+    document.getElementById("habitModalTitle")
+        .textContent = "Add Habit";
+
+    document.getElementById("habitId")
+        .value = "";
+
+    document.getElementById("habitName")
+        .value = "";
+
+    document.getElementById("habitCategory")
+        .value = "";
+
+    document.getElementById("habitFrequency")
+        .value = "Daily";
+
+    updateHabitUnits("Times");
+
+    document.getElementById("habitTarget")
+        .value = "";
+
+    document.getElementById("habitUnit")
+        .value = "Times";
+
+    document.getElementById("habitMessage")
+        .textContent = "";
+}
+
+
+document.getElementById("addHabitButton")
+    .addEventListener(
+        "click",
+        resetHabitForm
+    );
+
+
+/* COMPLETE */
+
+async function toggleComplete(id, completed){
+
+    try{
+
+        const response =
+            await fetch(
+                `${API}/api/habits/${id}/complete`,
+                {
+                    method:"PUT",
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+                    body:JSON.stringify({
+                        userId:user._id
+                    })
                 }
             );
-        });
 
 
-    /* GOAL EXAMPLES */
+        if(!response.ok){
 
-    document.querySelectorAll(".goal-example").forEach(button => {
-        button.addEventListener("click", () => {
-            document.getElementById("goalTitle").value =
-                button.dataset.goalExample || "";
+            throw new Error(
+                "Unable to update habit"
+            );
+        }
 
-            document.getElementById("goalTarget").value =
-                button.dataset.goalTarget || "";
 
-            document.getElementById("goalDescription").focus();
-        });
+        await loadHabits();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(error.message);
+    }
+}
+
+
+/* DELETE */
+
+async function deleteHabit(id){
+
+    if(!confirm("Delete this habit?")){
+        return;
+    }
+
+
+    try{
+
+        const response =
+            await fetch(
+                `${API}/api/habits/${id}?userId=${encodeURIComponent(user._id)}`,
+                {
+                    method:"DELETE"
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Unable to delete habit"
+            );
+        }
+
+
+        await loadHabits();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(error.message);
+    }
+}
+
+
+/* FILTERS */
+
+document.querySelectorAll(".filter")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                document.querySelectorAll(".filter")
+                    .forEach(
+                        item =>
+                            item.classList.remove("active")
+                    );
+
+                button.classList.add("active");
+
+                const filter =
+                    button.dataset.filter;
+
+
+                document.querySelectorAll(
+                    "#habitList .habit-row"
+                ).forEach(row => {
+
+                    const completed =
+                        row.querySelector(".habit-check")
+                            ?.classList.contains("completed");
+
+
+                    if(filter === "all"){
+
+                        row.style.display = "";
+
+                    }
+                    else if(filter === "completed"){
+
+                        row.style.display =
+                            completed ? "grid" : "none";
+
+                    }
+                    else if(filter === "todo"){
+
+                        row.style.display =
+                            completed ? "none" : "grid";
+
+                    }
+                    else{
+
+                        row.style.display = "none";
+
+                    }
+
+                });
+
+            }
+        );
+
     });
 
 
-    /* GOALS */
+/* GOAL EXAMPLES */
 
-    document.getElementById("saveGoalBtn")
-        .addEventListener(
-            "click",
-            saveGoal
+document.querySelectorAll(".goal-example").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        document.getElementById("goalTitle").value =
+            button.dataset.goalExample || "";
+
+        document.getElementById("goalTarget").value =
+            button.dataset.goalTarget || "";
+
+        document.getElementById("goalDescription").focus();
+
+    });
+
+});
+
+
+/* GOALS */
+
+document.getElementById("saveGoalBtn")
+    .addEventListener(
+        "click",
+        saveGoal
+    );
+
+
+async function saveGoal(){
+
+    const title =
+        document.getElementById("goalTitle")
+            .value
+            .trim();
+
+    const description =
+        document.getElementById("goalDescription")
+            .value
+            .trim();
+
+    const target =
+        Number(
+            document.getElementById("goalTarget")
+                .value
         );
 
+    const message =
+        document.getElementById("goalMessage");
 
-    async function saveGoal(){
 
-        const title =
-            document.getElementById("goalTitle")
-                .value
-                .trim();
+    if(!title){
 
-        const description =
-            document.getElementById("goalDescription")
-                .value
-                .trim();
+        message.textContent =
+            "Please enter a goal title.";
 
-        const target =
-            Number(
-                document.getElementById("goalTarget")
-                    .value
+        message.className =
+            "small text-danger";
+
+        return;
+    }
+
+
+    if(!Number.isFinite(target) || target <= 0){
+
+        message.textContent =
+            "Please enter a target greater than 0.";
+
+        message.className =
+            "small text-danger";
+
+        return;
+    }
+
+
+    try{
+
+        const response =
+            await fetch(
+                `${API}/api/goals`,
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+
+                    body:JSON.stringify({
+                        userId:user._id,
+                        title,
+                        description,
+                        target
+                    })
+                }
             );
 
-        const message =
-            document.getElementById("goalMessage");
+
+        const data =
+            await response.json();
 
 
-        if(!title){
+        if(!response.ok){
 
-            message.textContent =
-                "Please enter a goal title.";
-
-            message.className =
-                "small text-danger";
-
-            return;
+            throw new Error(
+                data.message ||
+                "Unable to save goal."
+            );
         }
 
 
-        if(!Number.isFinite(target) || target <= 0){
-
-            message.textContent =
-                "Please enter a target greater than 0.";
-
-            message.className =
-                "small text-danger";
-
-            return;
-        }
+        bootstrap.Modal
+            .getOrCreateInstance(
+                document.getElementById("goalModal")
+            )
+            .hide();
 
 
-        try{
+        document.getElementById("goalTitle")
+            .value = "";
 
-            const response =
-                await fetch(
-                    `${API}/api/goals`,
-                    {
-                        method:"POST",
+        document.getElementById("goalDescription")
+            .value = "";
 
-                        headers:{
-                            "Content-Type":"application/json"
-                        },
+        document.getElementById("goalTarget")
+            .value = "";
 
-                        body:JSON.stringify({
-                            userId:user._id,
-                            title,
-                            description,
-                            target
-                        })
-                    }
-                );
+        message.textContent = "";
 
 
-            const data =
-                await response.json();
+    }catch(error){
+
+        console.error(error);
+
+        message.textContent =
+            error.message;
+
+        message.className =
+            "small text-danger";
+    }
+}
 
 
-            if(!response.ok){
+/* HELP */
 
-                throw new Error(
-                    data.message ||
-                    "Unable to save goal."
-                );
-            }
+document.getElementById("helpButton")
+    .addEventListener(
+        "click",
+        event => {
 
+            event.preventDefault();
 
             bootstrap.Modal
                 .getOrCreateInstance(
-                    document.getElementById("goalModal")
+                    document.getElementById("helpModal")
                 )
-                .hide();
+                .show();
 
+        }
+    );
+
+
+document.getElementById("addGoalButton")
+    .addEventListener(
+        "click",
+        () => {
 
             document.getElementById("goalTitle")
                 .value = "";
@@ -2676,83 +2714,37 @@
             document.getElementById("goalTarget")
                 .value = "";
 
-            message.textContent = "";
+            document.getElementById("goalMessage")
+                .textContent = "";
 
-
-        }catch(error){
-
-            console.error(error);
-
-            message.textContent =
-                error.message;
-
-            message.className =
-                "small text-danger";
         }
-    }
+    );
 
 
-    /* HELP */
+/* LOGOUT */
 
-    document.getElementById("helpButton")
-        .addEventListener(
-            "click",
-            event => {
+document.getElementById("logoutBtn")
+    .addEventListener(
+        "click",
+        event => {
 
-                event.preventDefault();
+            event.preventDefault();
 
-                bootstrap.Modal
-                    .getOrCreateInstance(
-                        document.getElementById("helpModal")
-                    )
-                    .show();
-            }
-        );
+            localStorage.removeItem(
+                "habitforgeUser"
+            );
 
+            window.location.href =
+                "login.html";
 
-    document.getElementById("addGoalButton")
-        .addEventListener(
-            "click",
-            () => {
-
-                document.getElementById("goalTitle")
-                    .value = "";
-
-                document.getElementById("goalDescription")
-                    .value = "";
-
-                document.getElementById("goalTarget")
-                    .value = "";
-
-                document.getElementById("goalMessage")
-                    .textContent = "";
-            }
-        );
+        }
+    );
 
 
-    /* LOGOUT */
+/* INIT */
 
-    document.getElementById("logoutBtn")
-        .addEventListener(
-            "click",
-            event => {
-
-                event.preventDefault();
-
-                localStorage.removeItem(
-                    "habitforgeUser"
-                );
-
-                window.location.href =
-                    "login.html";
-            }
-        );
-
-
-    /* INIT */
-
-    setupUser();
-    loadHabits();
+setupUser();
+loadHabits();
 
 </script>
 
