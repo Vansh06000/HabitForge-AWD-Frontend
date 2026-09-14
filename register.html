@@ -174,59 +174,81 @@
         const registerForm =
             document.getElementById("registerForm");
 
-       registerForm.addEventListener(
-    "submit",
-    async function (event) {
+        registerForm.addEventListener(
+            "submit",
+            async function (event) {
 
                 event.preventDefault();
 
                 const name =
-                    document.getElementById("name").value;
+                    document.getElementById("name")
+                        .value
+                        .trim();
 
                 const email =
-                    document.getElementById("email").value;
+                    document.getElementById("email")
+                        .value
+                        .trim();
 
                 const password =
-                    document.getElementById("password").value;
+                    document.getElementById("password")
+                        .value;
 
-               try {
+                try {
 
-    const response = await fetch(
-    "https://habitforge-awd.onrender.com/api/users/register",
-        {
-            method: "POST",
+                    const response = await fetch(
+                        "https://habitforge-server-k8gd.onrender.com/api/auth/register",
+                        {
+                            method: "POST",
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
 
-            body: JSON.stringify({
-                name: name,
-                email: email,
-                password: password
-            })
-        }
-    );
+                            body: JSON.stringify({
+                                name: name,
+                                email: email,
+                                password: password
+                            })
+                        }
+                    );
 
-    const result = await response.json();
+                    const result =
+                        await response.json();
 
-    if (!response.ok) {
-        alert(result.message);
-        return;
-    }
+                    if (!response.ok) {
 
-    alert("Account created successfully!");
+                        alert(
+                            result.message ||
+                            "Registration failed."
+                        );
 
-    window.location.href = "login.html";
+                        return;
+                    }
 
-} catch (error) {
+                    alert(
+                        "Account created successfully!"
+                    );
 
-    console.error("Registration error:", error);
+                    /*
+                     * Registration does not create a login session.
+                     * The user will log in through login.html.
+                     */
 
-    alert(
-        "Could not connect to the server. Please make sure the API is running."
-    );
-}
+                    window.location.href =
+                        "login.html";
+
+                } catch (error) {
+
+                    console.error(
+                        "Registration error:",
+                        error
+                    );
+
+                    alert(
+                        "Could not connect to the server. Please make sure the API is running."
+                    );
+                }
 
             }
         );
