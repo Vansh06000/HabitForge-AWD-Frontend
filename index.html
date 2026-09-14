@@ -1547,7 +1547,9 @@
 
 <script>
     const API =
-        "https://habitforge-server-k8gd.onrender.com";
+        location.protocol === "file:"
+            ? "http://localhost:5000"
+            : "https://habitforge-server-k8gd.onrender.com";
 
     let user = null;
     let habits = [];
@@ -1768,7 +1770,8 @@
 
             habits = Array.isArray(data) ? data : [];
 
-            const today = getDateKey(0);
+            const today =
+                new Date().toISOString().split("T")[0];
 
             habits = habits.map(habit => ({
                 ...habit,
@@ -1808,9 +1811,7 @@
         const date = new Date();
         date.setHours(0,0,0,0);
         date.setDate(date.getDate() + offset);
-        return date.getFullYear() + "-" +
-            String(date.getMonth() + 1).padStart(2, "0") + "-" +
-            String(date.getDate()).padStart(2, "0");
+        return date.toISOString().split("T")[0];
     }
 
     function getCompletedCountForDate(dateKey){
@@ -1990,11 +1991,7 @@
                 const created = new Date(habit.createdAt);
                 if(Number.isNaN(created.getTime())) return true;
 
-                return (
-                    created.getFullYear() + "-" +
-                    String(created.getMonth() + 1).padStart(2, "0") + "-" +
-                    String(created.getDate()).padStart(2, "0")
-                ) <= dateKey;
+                return created.toISOString().split("T")[0] <= dateKey;
             }).length;
         });
 
@@ -2042,7 +2039,8 @@
 
         container.innerHTML = "";
 
-        const today = getDateKey(0);
+        const today =
+            new Date().toISOString().split("T")[0];
 
         const completedToday =
             habits.filter(h => {
@@ -2455,8 +2453,7 @@
                             "Content-Type":"application/json"
                         },
                         body:JSON.stringify({
-                            userId:user._id,
-                            date:getDateKey(0)
+                            userId:user._id
                         })
                     }
                 );
